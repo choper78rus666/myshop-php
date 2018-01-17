@@ -1,3 +1,7 @@
+<?php
+
+?>
+
 <!DOCTYPE>
 <html lang="ru">
     <head>
@@ -25,15 +29,15 @@
             <br>
     <!-- Навигация -->
             <div class="flex_navic row_container direction_row">
-                <div class="flex_nav_but"><a href="index.html" target="_self">Главная</a>
+                <div class="flex_nav_but"><a href="index.php" target="_self">Главная</a>
                 </div>
-                <div class="flex_nav_but"><a href="catalog.html">Каталог</a>
+                <div class="flex_nav_but"><a href="catalog.php">Каталог</a>
                 </div>
-                <div class="flex_nav_but"><a href="registration.html">Регистрация</a>
+                <div class="flex_nav_but"><a href="registration.php">Регистрация</a>
                 </div>
-                <div class="flex_nav_but"><a href="contacts.html">Контакты</a>
+                <div class="flex_nav_but"><a href="contacts.php">Контакты</a>
                 </div>
-                <div class="flex_nav_but"><a href="account.html">Личный кабинет</a>
+                <div class="flex_nav_but"><a href="account.php">Личный кабинет</a>
                 </div>
             </div>
             <br>
@@ -62,7 +66,7 @@
                                     <small>Видеокарта MSI GeForce GTX 1070Ti, GTX 1070 Ti GAMING 8G, 8Гб, GDDR5, Ret</small>
                                 </div>
                                 <br>
-                                <a href="items/item1.html">
+                                <a href="items.php">
                                     <img src="images/item1.jpg" height="70px" alt="нет изображения">
                                 </a>
                                 <p><strong>37 590 руб.</strong></p>

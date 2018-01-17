@@ -25,15 +25,15 @@
             <br>
     <!-- Навигация -->
             <div class="flex_navic row_container direction_row">
-                <div class="flex_nav_but"><a href="index.html" target="_self">Главная</a>
+                <div class="flex_nav_but"><a href="index.php" target="_self">Главная</a>
                 </div>
-                <div class="flex_nav_but"><a href="catalog.html">Каталог</a>
+                <div class="flex_nav_but"><a href="catalog.php">Каталог</a>
                 </div>
-                <div class="flex_nav_but"><a href="registration.html">Регистрация</a>
+                <div class="flex_nav_but"><a href="registration.php">Регистрация</a>
                 </div>
-                <div class="flex_nav_but"><a href="contacts.html">Контакты</a>
+                <div class="flex_nav_but"><a href="contacts.php">Контакты</a>
                 </div>
-                <div class="flex_nav_but"><a href="account.html">Личный кабинет</a>
+                <div class="flex_nav_but"><a href="account.php">Личный кабинет</a>
                 </div>
             </div>
             <br>
