@@ -17,7 +17,7 @@ function getDataFromFile($filename){
 }
 
 function addDataToFile($data, $filename){
-    if(file_put_contents($filename, serialize($data), FILE_APPEND) !== false){
+    if(file_put_contents($filename, serialize($data)) !== false){
         return true;
     }
     return false;
