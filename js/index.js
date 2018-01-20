@@ -13,7 +13,8 @@ jQuery(document).ready(function(){
                 userName: userName,
                 login: login,
                 pwd: pwd,
-                email: email
+                email: email,
+                state: 'user'
             };
            
             user_data = 'user_data=' + JSON.stringify(user_data);
@@ -23,12 +24,18 @@ jQuery(document).ready(function(){
                 type: 'post',
                 data: user_data,
                 success: function(response){
-                    console.log("response", response);
-                    if(response === 'user add'){
-                        window.location = "/"; // перенаправление на другую страницу
-                    } else {
-                        console.log("Пользователь не добавлен");
-                    }
+                    switch (response) {
+                         case 'user enabled':
+                            document.getElementById('response').innerHTML = 'Логин занят';
+                            break;
+                         case 'not adds':
+                            document.getElementById('response').innerHTML = 'Повторите регистрацию';
+                            break;
+                         case 'user add':
+                            document.getElementById('response').innerHTML = 'Пользователь зарегистрирован';
+                            window.location = "/";
+                            break;
+                     }
                 },
                 error: function(err){
                     console.log("Error", err);

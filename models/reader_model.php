@@ -1,4 +1,9 @@
 <?
+function getAllUsers() {
+    $users = getDataFromFile("../files/users_lst.txt");
+    return unserialize($users);
+}
+
 function getDataFromFile($filename){
     $fp = fopen($filename, "r");
     if($fp){

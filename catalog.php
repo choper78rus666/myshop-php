@@ -18,7 +18,7 @@ include "models/shows_model.php";
                                         <? for($i = 0; $i < count($item); $i++): ?>
                                         <tr>
                                             <td>
-                                                <a href="items.php">
+                                                <a href="<? echo 'items.php?id='.$item[$i]['id']; ?>">
                                                     <? echo $item[$i]['title']; ?>
                                                 </a>
                                             </td>

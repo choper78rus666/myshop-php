@@ -63,7 +63,9 @@
  //file_put_contents('files/item_base.txt', rtrim(json_encode($item),']'), FILE_APPEND);
 ?>
 
-<? 
+<?
+$get = $_GET;
+$index = $get['id']-1;
 include 'header.php'; 
 include "models/shows_model.php";
 ?>
@@ -75,17 +77,17 @@ include "models/shows_model.php";
                             <table class="item navic">
                                 <tr>
                                     <td>
-                                        <p><strong><?php echo $item[0]['title'] ?></strong></p>
+                                        <p><strong><?php echo $item[$index]['title'] ?></strong></p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <p><strong>Цена: <?php echo $item[0]['price'] ?> руб.</strong></p>
+                                        <p><strong>Цена: <?php echo $item[$index]['price'] ?> руб.</strong></p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <img src="<?php echo $item[0]['image'] ?>" height="120px" alt="нет изображения">
+                                        <img src="<?php echo $item[$index]['image'] ?>" height="120px" alt="нет изображения">
                                     </td>
                                 </tr>
                                 <tr>
@@ -93,12 +95,12 @@ include "models/shows_model.php";
                                 </tr>
                                 <tr>
                                     <td>
-                                        <blockquote><?php echo $item[0]['about'] ?></blockquote>
+                                        <blockquote><?php echo $item[$index]['about'] ?></blockquote>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input type="button" name="<?php echo $item[0]['id'] ?>" value="купить">
+                                        <input type="button" name="<?php echo $item[$index]['id'] ?>" value="купить">
                                     </td>
                                 </tr>
                             </table>

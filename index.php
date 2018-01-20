@@ -29,7 +29,7 @@ include "models/shows_model.php";
                                     <small><? echo $item[$i]['title']; ?></small>
                                 </div>
                                 <br>
-                                <a href="items.php">
+                                <a href="<? echo 'items.php?id='.$item[$i]['id']; ?>">
                                     <img src="<? echo $item[$i]['image']; ?>" height="70px" alt="нет изображения">
                                 </a>
                                 <p><strong><? echo $item[$i]['price']; ?> руб.</strong></p>
@@ -43,7 +43,7 @@ include "models/shows_model.php";
                                     <small><? echo $item[$i]['title']; ?></small>
                                 </div>
                                 <br>
-                                <a href="items.php">
+                                <a href="<? echo 'items.php?id='.$item[$i]['id']; ?>">
                                     <img src="<? echo $item[$i]['image']; ?>" height="70px" alt="нет изображения">
                                 </a>
                                 <p><strong><? echo $item[$i]['price']; ?> руб.</strong></p>

@@ -42,7 +42,7 @@ if(isset($post['last_name'])){
                                                 <label for="name">Имя</label>
                                             </td>
                                             <td>
-                                                <input id="name" type="text" name="last_name" required>
+                                                <input id="name" type="text" required>
                                             </td>
                                         </tr>
                                         <tr>
@@ -50,7 +50,7 @@ if(isset($post['last_name'])){
                                                 <label for="login">Login</label>
                                             </td>
                                             <td>
-                                                <input id="login" type="text" name="login" required>
+                                                <input id="login" type="text" required>
                                             </td>
                                         </tr>
                                         <tr>
@@ -58,7 +58,7 @@ if(isset($post['last_name'])){
                                                 <label for="pass">Password</label>
                                             </td>
                                             <td>
-                                                <input id="pass" type="password" name="pwd" required>
+                                                <input id="pass" type="password" required>
                                             </td>
                                         </tr>
                                         <tr>
@@ -66,11 +66,12 @@ if(isset($post['last_name'])){
                                                 <label for="email">Email</label>
                                             </td>
                                             <td>
-                                                <input id="email" type="email"  name="email" placeholder="name@mail.ru" required>
+                                                <input id="email" type="email" placeholder="name@mail.ru" required>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td align="center" colspan="2">
+                                                <div id="response">Введите данные для регистрации</div>
                                             <br>
                                                 <input form="reg_form" type="submit" value="Отправить">
                                             </td>

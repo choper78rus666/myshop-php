@@ -34,7 +34,7 @@
                 </div>
                 <div class="flex_nav_but"><a href="contacts.php">Контакты</a>
                 </div>
-                <div class="flex_nav_but"><a href="account.php">Личный кабинет</a>
+                <div class="flex_nav_but"><a href="login.php">Личный кабинет</a>
                 </div>
             </div>
             <br>

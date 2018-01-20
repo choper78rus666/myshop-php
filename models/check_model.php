@@ -2,18 +2,15 @@
 function check_data($str){
     $data = json_decode($str, true);
     
-        if(isset($data['userName'])){
-        $boo = true;
-        $data['userName'] = check_input($data['userName']) ?: $boo = false;
-        $db['login'] = check_input($data['login']) ?: $boo = false;
-        $db['pwd'] = check_input($data['pwd']) ?: $boo = false;
-        $db['email'] = check_input($data['email']) ?: $boo = false;
-        if(!$boo){
-            return false;
-        } else {
-            return $data;
+    if(isset($data['login'])){
+        foreach($data as $key => $db){
+            $data[$key] = check_input($data[$key]);
+            if(!$data[$key]){
+                return false;
+            }
         }
-    } 
+        return $data;
+    }
     return false;
 }
 
