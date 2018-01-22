@@ -4,11 +4,15 @@ jQuery(document).ready(function(){
         function(event){
             event.preventDefault();
 
-            let userName = jQuery('#name').val();
-            let login = jQuery('#login').val();
-            let pwd = jQuery('#pass').val();
-            let email = jQuery('#email').val();
+            let userName = checkInput(jQuery('#name').val());
+            let login = checkInput(jQuery('#login').val());
+            let pwd = checkInput(jQuery('#pass').val());
+            let email = checkInput(jQuery('#email').val());
 
+            if(!userName || !login || !pwd || !email){
+                return;
+            }
+            
             let user_data = {
                 userName: userName,
                 login: login,

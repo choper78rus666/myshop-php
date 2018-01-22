@@ -5,8 +5,12 @@ jQuery(document).ready(function(){
         function(event){
             event.preventDefault();
         
-            let login = jQuery('#login').val();
-            let pwd = jQuery('#pass').val();
+            let login = checkInput(jQuery('#login').val());
+            let pwd = checkInput(jQuery('#pass').val());
+            
+            if(!login || !pwd){
+                return;
+            }
             
             let auth_data = {
                 login: login,
