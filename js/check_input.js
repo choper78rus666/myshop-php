@@ -11,9 +11,11 @@ function checkInput(str){
     
     if(str.indexOf(" ", str.length-1) >= 0){
         str = str.substr(0, str.length-1);
+    } else if(str.lastIndexOf(" ", 0) >= 0){
+        str = str.substr(1, str.length-1);
     } else {
         return str;
     }
-
+    
     return checkInput(str);
 }
