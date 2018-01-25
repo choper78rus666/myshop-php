@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "reader_model.php";
 include "check_model.php";
 
@@ -9,7 +10,9 @@ function authUser() {
 
     foreach($all_users as $value) {
        if ($value['login'] == $user_data['login']) {
-            if ($value['pwd'] == $user_data['pwd']) {
+            if (password_verify($user_data['pwd'], $value['pwd'])) {
+                $_SESSION['auth'] = $value['state'];
+                $_SESSION['login'] = $value['login'];
                 echo $value['state'];
                 return true;
             }
@@ -21,4 +24,6 @@ function authUser() {
     return false;
 }
 
-authUser();
+if(isset($_POST['auth_data'])){
+    authUser();
+}

@@ -7,7 +7,7 @@ function reg_user(){
     $user_data = check_data($post['user_data']);
     $all_users = getAllUsers();
     
-    if(isset($all_users)){
+    if(!empty($all_users)){
         foreach($all_users as $value) {
             if ($value['login'] == $user_data['login']) {
                 echo 'user enabled';
@@ -19,6 +19,7 @@ function reg_user(){
         $all_users = [];
     }
     
+    $user_data['pwd'] = password_hash($user_data['pwd'], PASSWORD_DEFAULT);
     array_push($all_users, $user_data);
     $user_data = $all_users;
     
@@ -26,7 +27,7 @@ function reg_user(){
         echo 'not adds';
     } else {
         echo 'user add';
-    } 
+    }
         
 }
 

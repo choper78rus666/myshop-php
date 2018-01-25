@@ -1,4 +1,6 @@
-<? include 'header.php'; ?>
+<?
+include 'header.php'; 
+?>
     <!-- Основной контент -->
             <div class="flex_content">
                 <div class="row_container">
@@ -68,6 +70,7 @@
                                     </div>
                                     <br>
                                     <input type="submit" value="Отправить данные">
+                                    <a style="float: right;" href="login.php?logout=true">Выйти с ЛК</a>
                                 </fieldset>
                             </form>
                         </div>

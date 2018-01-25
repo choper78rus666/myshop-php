@@ -24,7 +24,6 @@ jQuery(document).ready(function(){
                 type: 'post',
                 data: auth_data,
                 success: function(response){
-                    console.log("response", response);
                     switch (response) {
                          case 'pwd is wrong':
                              document.getElementById('response').innerHTML = 'Указан не верный пароль';

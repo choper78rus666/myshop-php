@@ -1,32 +1,3 @@
-
-<?php/*
-$post = $_POST;
-
-function check_input($str){
-    $str = strip_tags(trim($str));
-    return empty($str)? false : $str;
-}
-
-function input_error(){
-    echo "введены не все данные или данные не верны";
-}
-
-if(isset($post['last_name'])){
-    $boo = true;
-    $db['last_name'] = check_input($post['last_name']) ?: $boo = false;
-    $db['login'] = check_input($post['login']) ?: $boo = false;
-    $db['pwd'] = check_input($post['pwd']) ?: $boo = false;
-    $db['email'] = check_input($post['email']) ?: $boo = false;
-    if(!$boo){
-        input_error();
-    } else {
-        echo "Регистрация прошла успешно!";
-    }
-}
-    
-*/
-?>
-
 <? include 'header.php'; ?>
     <!-- Основной контент -->
             <div class="flex_content">

@@ -1,4 +1,18 @@
-<? include 'header.php'; ?>
+<?
+session_start();
+
+if ($_GET['logout']){
+    session_unset();
+}
+
+if ($_SESSION['auth'] === 'user') {
+    header('Location:/user_account.php');
+} elseif ($_SESSION['auth'] === 'admin'){
+    header('Location:/admin_account.php');
+}
+
+include 'header.php';
+?>
     <!-- Основной контент -->
             <div class="flex_content">
                 <div class="row_container">
