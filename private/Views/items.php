@@ -62,14 +62,6 @@
 // Записал данные с массива в файл
  //file_put_contents('files/item_base.txt', rtrim(json_encode($item),']'), FILE_APPEND);
 ?>
-
-<?
-$get = $_GET;
-$index = $get['id']-1;
-include 'header.php'; 
-include "models/shows_model.php";
-?>
-    <!-- Основной контент -->
             <div class="flex_content">
                 <div class="row_container">
                     <div class="flex1">
@@ -77,17 +69,17 @@ include "models/shows_model.php";
                             <table class="item navic">
                                 <tr>
                                     <td>
-                                        <p><strong><?php echo $item[$index]['title'] ?></strong></p>
+                                        <p><strong><?php echo $item['title'] ?></strong></p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <p><strong>Цена: <?php echo $item[$index]['price'] ?> руб.</strong></p>
+                                        <p><strong>Цена: <?php echo $item['price'] ?> руб.</strong></p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <img src="<?php echo $item[$index]['image'] ?>" height="120px" alt="нет изображения">
+                                        <img src="<?php echo $item['image'] ?>" height="120px" alt="нет изображения">
                                     </td>
                                 </tr>
                                 <tr>
@@ -95,7 +87,7 @@ include "models/shows_model.php";
                                 </tr>
                                 <tr>
                                     <td>
-                                        <blockquote><?php echo $item[$index]['about'] ?></blockquote>
+                                        <blockquote><?php echo $item['about'] ?></blockquote>
                                     </td>
                                 </tr>
                                 <tr>
@@ -108,7 +100,3 @@ include "models/shows_model.php";
                     </div>
                 </div>
             </div>
-            <br><br>
-            <br><br>
-    <!-- Футер -->
-<? include 'footer.php'; ?>

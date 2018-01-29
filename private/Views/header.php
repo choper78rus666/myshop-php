@@ -13,13 +13,13 @@
             <div class="flex_navic row_container direction_row">
                 <div class="flex_nav_but"><a href="/" target="_self">Главная</a>
                 </div>
-                <div class="flex_nav_but"><a href="/catalog">Каталог</a>
+                <div class="flex_nav_but"><a href="catalog">Каталог</a>
                 </div>
-                <div class="flex_nav_but"><a href="registration.php">Регистрация</a>
+                <div class="flex_nav_but"><a href="registration">Регистрация</a>
                 </div>
-                <div class="flex_nav_but"><a href="contacts.php">Контакты</a>
+                <div class="flex_nav_but"><a href="contacts">Контакты</a>
                 </div>
-                <div class="flex_nav_but"><a href="login.php">Личный кабинет</a>
+                <div class="flex_nav_but"><a href="login">Личный кабинет</a>
                 </div>
             </div>
             <br>

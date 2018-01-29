@@ -20,7 +20,7 @@ jQuery(document).ready(function(){
             auth_data = 'auth_data=' + JSON.stringify(auth_data);
             
             jQuery.ajax({
-                url: '../public/Controllers/auth_user.php',
+                url: 'auth',
                 type: 'post',
                 data: auth_data,
                 success: function(response){
@@ -32,10 +32,10 @@ jQuery(document).ready(function(){
                              document.getElementById('response').innerHTML = 'Пользователь не зарегистрирован';
                              break;
                          case 'user':
-                             window.location = "/user_account.php";
+                             window.location = "/user_account";
                              break;
                          case 'admin':
-                             window.location = "/admin_account.php";
+                             window.location = "/admin_account";
                              break;
                      }
                 },
