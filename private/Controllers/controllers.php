@@ -55,33 +55,15 @@ function loginAction() {
 }
 
 function authAction(){
-    session_start();
+   
     include "../private/Models/reader_model.php";
     include "../private/Models/check_model.php";
-
-    function authUser() {
-        $post = $_POST;
-        $user_data = check_data($post['auth_data']);
-        $all_users = getAllUsers();
-
-        foreach($all_users as $value) {
-           if ($value['login'] == $user_data['login']) {
-                if (password_verify($user_data['pwd'], $value['pwd'])) {
-                    $_SESSION['auth'] = $value['state'];
-                    $_SESSION['login'] = $value['login'];
-                    echo $value['state'];
-                    return true;
-                }
-                echo 'pwd is wrong';
-                return false;
-            }
-        }
-        echo 'user not found';
-        return false;
-    }
+    include "../private/Models/auth_model.php";
 
     if(isset($_POST['auth_data'])){
-        authUser();
+        $post = $_POST;
+        $user_data = check_data($post['auth_data']);
+        echo authUser($user_data);
     }
 }
 
@@ -115,37 +97,14 @@ function registrationAction() {
 function reg_userAction(){
     include "../private/Models/reader_model.php";
     include "../private/Models/check_model.php";
+    include "../private/Models/reg_model.php";
 
-    function reg_user(){
+    if(isset($_POST['user_data'])){
         $post = $_POST;
         $user_data = check_data($post['user_data']);
-        $all_users = getAllUsers();
-
-        if(!empty($all_users)){
-            foreach($all_users as $value) {
-                if ($value['login'] == $user_data['login']) {
-                    echo 'user enabled';
-                    return;
-                }
-            }
-
-        } else {
-            $all_users = [];
-        }
-
-        $user_data['pwd'] = password_hash($user_data['pwd'], PASSWORD_DEFAULT);
-        array_push($all_users, $user_data);
-        $user_data = $all_users;
-
-        if(!$user_data or !addDataToFile($user_data, '../private/files/users_lst.txt')){
-            echo 'not adds';
-        } else {
-            echo 'user add';
-        }
-
+        echo reg_user($user_data);
     }
-
-    reg_user();
+    
 }
 
 function contactsAction() {
