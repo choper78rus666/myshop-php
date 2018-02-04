@@ -1,7 +1,14 @@
 <?
-function authUser($user_data) {
+namespace Dmitriy\Shop\Models;
+use Dmitriy\Shop\Models\ReaderModel;
+
+class AuthModel {
+    
+    function authUser($user_data) {
         session_start();
-        $all_users = getAllUsers();
+        
+        $reader = new ReaderModel();
+        $all_users = $reader->getAllUsers();
 
         foreach($all_users as $value) {
            if ($value['login'] == $user_data['login']) {
@@ -16,4 +23,5 @@ function authUser($user_data) {
         }
         return 'user not found';
     }
+}
 ?>

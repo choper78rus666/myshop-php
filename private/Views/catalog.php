@@ -13,7 +13,7 @@
                             <? for($i = 0; $i < count($item); $i++): ?>
                             <tr>
                                 <td>
-                                    <a href="<? echo 'item?id='.$item[$i]['id']; ?>">
+                                    <a href="<? echo 'catalog/item/'.$item[$i]['id']; ?>">
                                         <? echo $item[$i]['title']; ?>
                                     </a>
                                 </td>

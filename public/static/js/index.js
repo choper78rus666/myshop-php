@@ -24,7 +24,7 @@ jQuery(document).ready(function(){
             user_data = 'user_data=' + JSON.stringify(user_data);
             
             jQuery.ajax({
-                url: 'reg_user',
+                url: '/account/reg_user',
                 type: 'post',
                 data: user_data,
                 success: function(response){

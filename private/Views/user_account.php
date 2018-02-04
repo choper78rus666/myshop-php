@@ -66,7 +66,7 @@
                         </div>
                         <br>
                         <input type="submit" value="Отправить данные">
-                        <a style="float: right;" href="login?logout=true">Выйти с ЛК</a>
+                        <a style="float: right;" href="/account/login/logout">Выйти с ЛК</a>
                     </fieldset>
                 </form>
             </div>
