@@ -4,6 +4,7 @@ use Dmitriy\Shop\Models\ReaderModel;
 use Dmitriy\Shop\Models\CheckModel;
 use Dmitriy\Shop\Models\RegModel;
 use Dmitriy\Shop\Models\AuthModel;
+use Dmitriy\Shop\Models\UserInfoModel;
 
 class AccountController {
     
@@ -55,7 +56,32 @@ class AccountController {
             echo $auth->authUser($user_data);
         }
     }
+    
+    function user_infoAction(){
+        if(isset($_POST['user_info'])){
+            $post = $_POST;
+            $check = new CheckModel();
+            $user_data = $check->check_data($post['user_info']);
+            $info = new UserInfoModel();
+            echo $info->infoUser($user_data);
+        }
+    }
 
+    function infoAction() {
+        session_start();
+        if ($_SESSION['auth'] !== 'user'){
+            session_unset();
+            header('Location: /account');
+        }
+        
+        $title = 'Личный кабинет';
+        $view_filename = 'info_account.php';
+        GenerateResponse::generateResponse($view_filename, [
+            'title' => $title
+        ]);
+
+    }
+    
     function user_accountAction() {
         session_start();
         if ($_SESSION['auth'] !== 'user'){

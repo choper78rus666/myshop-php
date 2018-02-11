@@ -26,5 +26,6 @@
     <script src="/static/js/check_input.js"></script>
     <script src="/static/js/auth.js"></script>
     <script src="/static/js/index.js"></script>
+    <script src="/static/js/user_info.js"></script>
     </body>
 </html>
