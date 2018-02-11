@@ -5,17 +5,17 @@ use Dmitriy\Shop\DBConnector\DB;
 class UserInfoModel {
     
     function infoUser($data){
-        
-        return $this->uploadAvatar($data['avatar']);
+        return;
+       // return $this->uploadAvatar($data['avatar']);
     }
     
     function uploadAvatar($path){
        //properties of the uploaded file
-        $name= $_FILES["myfile"]["name"];
-        $type= $_FILES["myfile"]["type"];
-        $size= $_FILES["myfile"]["size"];
-        $temp= $_FILES["myfile"]["temp_name"];
-        $error= $_FILES["myfile"]["error"];
+        $name= $path["file"]["name"];
+        $type= $path["file"]["type"];
+        $size= $path["file"]["size"];
+        $temp= $path["file"]["tmp_name"];
+        $error= $path["file"]["error"];
 
         if ($error > 0)
             die("Error uploading file! code $error.");
@@ -27,8 +27,9 @@ class UserInfoModel {
             }
             else
             {
-             move_uploaded_file($temp, "../uploaded/" .$name);
-             return $path. "Upload complete!"; 
+             move_uploaded_file($temp, "../private/upload/" .$name);
+                
+             return $temp."Upload complete!"; 
              }
         }
 

@@ -2,7 +2,7 @@
     <div class="row_container">
         <div class="flex1">
             <div class="content">
-                <form id="user_info" method="post">
+                <form id="user_info" method="post" enctype="multipart/form-data">
                     <fieldset>
                         <legend>Личный кабинет</legend>
                         <div id="lk_info">
@@ -62,10 +62,11 @@
                         </table>
                         <br>
                         <div>
-                            <label>Для установки аватара загрузите картинку<br><input id="avatar" type="file" name="avatar" accept="image/*" multiple></label>
+                            <label>Для установки аватара загрузите картинку<br><input id="avatar" type="file" name="avatar" accept="image/*" ></label>
                         </div>
                         <br>
                         <input form="user_info" type="submit" value="Отправить данные">
+                        <div id="response"></div>
                         <a style="float: right;" href="/account/login/logout">Выйти с ЛК</a>
                     </fieldset>
                 </form>

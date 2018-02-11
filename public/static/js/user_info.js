@@ -11,7 +11,10 @@ jQuery(document).ready(function(){
             let birthday = jQuery('#birthday').val();
             let sex = jQuery('#sexm').prop("checked") ? 'maly' : 'femaly';
             let about = jQuery('#about').val() ? checkInput(jQuery('#about').val()) : " ";
-            let avatar = jQuery('#avatar').val();
+            let file_data = jQuery('#avatar').prop('files')[0];
+            
+            var avatar = new FormData();
+            avatar.append('file', file_data);
             
             console.log("name ", name);
             console.log("surname", surname);
@@ -35,6 +38,20 @@ jQuery(document).ready(function(){
            
             user_info = 'user_info=' + JSON.stringify(user_info);
             
+            jQuery.ajax({
+                url: '/account/upload',
+                dataType: 'text',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: avatar,
+                type: 'post',
+                success: function(php_script_response){
+                    console.log(php_script_response);
+                    document.getElementById('response').innerHTML = 'Данные сохранены';
+                }
+            });
+
             jQuery.ajax({
                 url: '/account/user_info',
                 type: 'post',

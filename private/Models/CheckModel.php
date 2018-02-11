@@ -9,7 +9,10 @@ class CheckModel {
         if(isset($data)){
             foreach($data as $key => $db){
                 //$check = new CheckModel();
-                $data[$key] = $this->check_input($data[$key]);
+                if ($key !== 'avatar'){
+                    $data[$key] = $this->check_input($data[$key]);
+                }
+                
                 if(!$data[$key]){
                     return false;
                 }

@@ -66,6 +66,15 @@ class AccountController {
             echo $info->infoUser($user_data);
         }
     }
+    
+    function uploadAction(){
+        var_dump($_FILES);
+        if(isset($_FILES)){
+            echo $_FILES["avatar"]["name"];
+            $info = new UserInfoModel();
+            echo $info->uploadAvatar($_FILES);
+        }
+    }
 
     function infoAction() {
         session_start();
