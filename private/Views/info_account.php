@@ -15,7 +15,7 @@
                                     <label for="name">Имя</label>
                                 </td>
                                 <td>
-                                    <input id="name" type="text" required>
+                                    <input id="name" type="text" value="<? echo $user_info['name']; ?>" required>
                                 </td>
                             </tr>
                             <tr>
@@ -23,7 +23,7 @@
                                     <label for="surname">Фамилия</label>
                                 </td>
                                 <td>
-                                    <input id="surname" type="text" required>
+                                    <input id="surname" type="text" value="<? echo $user_info['surname']; ?>" required>
                                 </td>
                             </tr>
                             <tr>
@@ -31,7 +31,7 @@
                                     <label for="middle_name">Отчество</label>
                                 </td>
                                 <td>
-                                    <input id="middle_name" type="text" required>
+                                    <input id="middle_name" type="text" value="<? echo $user_info['middle_name']; ?>" required>
                                 </td>
                             </tr>
                             <tr>
@@ -39,7 +39,7 @@
                                     <label for="birthday">Дата рождения</label>
                                 </td>
                                 <td>
-                                    <input id="birthday" type="date" required placeholder="01.01.1999">
+                                    <input id="birthday" type="date" value="<? echo $user_info['birthday']; ?>" required>
                                 </td>
                             </tr>
                             <tr>
@@ -47,8 +47,8 @@
                                     <label id="sex">Укажите ваш пол</label>
                                 </td>
                                 <td>
-                                    <label><input id="sexm" type="radio" name="sex" checked>мужской</label>
-                                    <label><input id="sexf" type="radio" name="sex">женский</label>
+                                    <label><input id="sexm" type="radio" name="sex" <? echo $user_info['sex'] !== male ?:'checked'; ?>>мужской</label>
+                                    <label><input id="sexf" type="radio" name="sex" <? echo $user_info['sex'] !== female ?:'checked'; ?>>женский</label>
                                 </td>
                             </tr>
                             <tr>
@@ -56,18 +56,26 @@
                                     <label for="about">Немного о себе</label>
                                 </td>
                                 <td>
-                                    <textarea id="about" cols="30" rows="5" maxlength="150"></textarea>
+                                    <textarea id="about" cols="30" rows="5" maxlength="150" required><? echo $user_info['about']; ?></textarea>
                                 </td>
                             </tr>
-                        </table>
-                        <br>
-                        <div>
-                            <label>Для установки аватара загрузите картинку<br><input id="avatar" type="file" name="avatar" accept="image/*" ></label>
-                        </div>
-                        <br>
-                        <input form="user_info" type="submit" value="Отправить данные">
+                        
+                        <tr><td>
+                            <div><img id="image" src="../static/upload/<? echo $user_info['avatar']; ?>" height="150px"></div>
+                            </td><td>
+                            <label>Загрузите аватар<br></label>
+                            <input id="avatar" type="file" name="avatar" accept="image/*"  value="<? echo $user_info['avatar']; ?>">
+                            <div id="response_image"></div>
+                        </td></tr>
+                            <tr>
+                            <td>
+                            </td>
+                            <td>
+                        <input form="user_info" type="submit" value="Сохранить данные">
                         <div id="response"></div>
                         <a style="float: right;" href="/account/login/logout">Выйти с ЛК</a>
+                            </td></tr>
+                        </table>
                     </fieldset>
                 </form>
             </div>

@@ -57,37 +57,44 @@ class AccountController {
         }
     }
     
+    function uploadAction(){
+        if(!empty($_FILES['file']['name'])){
+            $info = new UserInfoModel();
+            echo $info->uploadAvatar($_FILES);
+        } else {
+            echo "File not found";
+        }
+    }
+    
     function user_infoAction(){
+        session_start();
         if(isset($_POST['user_info'])){
             $post = $_POST;
             $check = new CheckModel();
             $user_data = $check->check_data($post['user_info']);
             $info = new UserInfoModel();
-            echo $info->infoUser($user_data);
-        }
-    }
-    
-    function uploadAction(){
-        var_dump($_FILES);
-        if(isset($_FILES)){
-            echo $_FILES["avatar"]["name"];
-            $info = new UserInfoModel();
-            echo $info->uploadAvatar($_FILES);
+            var_dump($user_data);
+            $user_data += ['login'=>$_SESSION['login']];
+            echo $info->updInfoUser($user_data);
         }
     }
 
     function infoAction() {
         session_start();
-        if ($_SESSION['auth'] !== 'user'){
+        if ($_SESSION['auth'] === 'user' || $_SESSION['auth'] === 'admin'){
+            $info = new UserInfoModel();
+            $user_info = $info->getInfoUser($_SESSION['login']);
+            $title = 'Личный кабинет';
+            $view_filename = 'info_account.php';
+            GenerateResponse::generateResponse($view_filename, [
+                'title' => $title,
+                'user_info' => $user_info
+            ]);
+        } else {
             session_unset();
             header('Location: /account');
         }
         
-        $title = 'Личный кабинет';
-        $view_filename = 'info_account.php';
-        GenerateResponse::generateResponse($view_filename, [
-            'title' => $title
-        ]);
 
     }
     

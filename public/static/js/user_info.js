@@ -9,12 +9,17 @@ jQuery(document).ready(function(){
             let surname = checkInput(jQuery('#surname').val());
             let middle_name = checkInput(jQuery('#middle_name').val());
             let birthday = jQuery('#birthday').val();
-            let sex = jQuery('#sexm').prop("checked") ? 'maly' : 'femaly';
-            let about = jQuery('#about').val() ? checkInput(jQuery('#about').val()) : " ";
+            let sex = jQuery('#sexm').prop("checked") ? 'male' : 'female';
+            let about = jQuery('#about').val() ? checkInput(jQuery('#about').val()) : "";
+            let avatar = typeof(jQuery('#avatar').prop('files')[0]) !== 'undefined' ? jQuery('#avatar').prop('files')[0]['name'] : jQuery("#image").attr('src').slice(jQuery("#image").attr('src').lastIndexOf('/') + 1);
+            if (typeof(avatar) === ''){
+                avatar = 'default.jpg';
+            }
+            
             let file_data = jQuery('#avatar').prop('files')[0];
             
-            var avatar = new FormData();
-            avatar.append('file', file_data);
+            var data = new FormData();
+            data.append('file', file_data);
             
             console.log("name ", name);
             console.log("surname", surname);
@@ -32,7 +37,7 @@ jQuery(document).ready(function(){
                 birthday: birthday,
                 sex: sex,
                 about: about,
-                avatar: avatar,
+                avatar: avatar
                 
             };
            
@@ -44,14 +49,26 @@ jQuery(document).ready(function(){
                 cache: false,
                 contentType: false,
                 processData: false,
-                data: avatar,
+                data: data,
                 type: 'post',
                 success: function(php_script_response){
                     console.log(php_script_response);
-                    document.getElementById('response').innerHTML = 'Данные сохранены';
+                    switch (php_script_response) {
+                        case 'Upload complete!':
+                            
+                            jQuery("#image").attr("src",'/static/upload/'+avatar);
+                            document.getElementById('response_image').innerHTML = 'Аватарка загружена';
+                            break;
+                        case 'Format  not allowed or file size too big!':
+                            document.getElementById('response_image').innerHTML = 'Размер файла больше 2мб.';
+                            break;
+                        case 'File not found':
+                            document.getElementById('response_image').innerHTML = 'Аватарка не загружена';
+                            break;
+                    }
                 }
             });
-
+            
             jQuery.ajax({
                 url: '/account/user_info',
                 type: 'post',
@@ -59,10 +76,9 @@ jQuery(document).ready(function(){
                 success: function(response){
                     console.log(response);
                     switch (response) {
-                            
-                         case 'add data':
-                             document.getElementById('response').innerHTML = 'Данные сохранены';
-                             break;
+                         case '1':
+                            document.getElementById('response').innerHTML = 'Данные сохранены';
+                            break;
                      }
                 },
                 error: function(err){

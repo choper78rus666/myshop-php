@@ -8,14 +8,6 @@
                         <table class="lk_form">
                             <tr>
                                 <td>
-                                    <label for="name">Имя</label>
-                                </td>
-                                <td>
-                                    <input id="name" type="text" required>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
                                     <label for="login">Login</label>
                                 </td>
                                 <td>
