@@ -59,8 +59,11 @@ jQuery(document).ready(function(){
                             jQuery("#image").attr("src",'/static/upload/'+avatar);
                             document.getElementById('response_image').innerHTML = 'Аватарка загружена';
                             break;
-                        case 'Format  not allowed or file size too big!':
+                        case 'Format file size too big!':
                             document.getElementById('response_image').innerHTML = 'Размер файла больше 2мб.';
+                            break;
+                        case 'Format not allowed!':
+                            document.getElementById('response_image').innerHTML = 'Допустимы типы jpeg или png.';
                             break;
                         case 'File not found':
                             document.getElementById('response_image').innerHTML = 'Аватарка не загружена';

@@ -25,11 +25,16 @@ class UserInfoModel {
         if ($error > 0){
             return "Error uploading file! code $error.";
         } else {
-            if($type=="image/png" || $size > 2097152){
-                return "Format  not allowed or file size too big!";
-            } else {
-                move_uploaded_file($temp, "../public/static/upload/" .$name);
-                return "Upload complete!"; 
+            if($type === "image/jpeg" || $type === "image/png"){
+                if($size > 2097152){
+                    return "Format file size too big!";
+                } else {
+                    move_uploaded_file($temp, "../public/static/upload/" .$name);
+                    return "Upload complete!"; 
+
+                    }
+            } else {;
+                return "Format not allowed!";
                 }
             }
     }

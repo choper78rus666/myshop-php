@@ -73,7 +73,6 @@ class AccountController {
             $check = new CheckModel();
             $user_data = $check->check_data($post['user_info']);
             $info = new UserInfoModel();
-            var_dump($user_data);
             $user_data += ['login'=>$_SESSION['login']];
             echo $info->updInfoUser($user_data);
         }
