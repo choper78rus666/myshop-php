@@ -23,7 +23,7 @@ class CatalogController {
         
         if (!empty($get)) {
             // получаем массив с show по id из GET запроса
-            $index = (int)$get-1;
+            $index = (int)$get;
             $title = 'Карточка товара';
             $view_filename = 'items.php';
             GenerateResponse::generateResponse($view_filename, [

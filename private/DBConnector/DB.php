@@ -25,7 +25,16 @@ class DB {
         birthday DATE DEFAULT NULL,
         sex VARCHAR (25) DEFAULT 'male',
         about VARCHAR (25) DEFAULT '',
-        avatar VARCHAR (25) DEFAULT 'default.jpg');";
+        avatar VARCHAR (25) DEFAULT 'default.jpg');
+        
+        CREATE TABLE IF NOT EXISTS catalog (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        category VARCHAR (25) DEFAULT 'other',
+        title VARCHAR (200) DEFAULT '',
+        image VARCHAR (50) DEFAULT 'defaul.png',
+        about VARCHAR (5000) DEFAULT '',
+        price INT (10) NOT NULL DEFAULT '0',
+        aviable bit(1) DEFAULT b'0');";
         
         $conection->exec($sql);
         return $conection;
@@ -42,7 +51,7 @@ class DB {
     
     function getAccount($param) {
         $connect = $this->connectDB();
-        $sql = "SELECT * from accounts WHERE login = ?";
+        $sql = "SELECT * from accounts WHERE login = ?;";
         $param = [$param];
         $statment = $connect->prepare($sql);
         $statment->execute($param);
@@ -51,18 +60,48 @@ class DB {
     
     function updInfoUser($params){
         $connect = $this->connectDB();
-        $sql = "UPDATE user_info SET name=:name, surname=:surname, middle_name=:middle_name, birthday=:birthday, sex=:sex, about=:about, avatar=:avatar WHERE login=:login";
+        $sql = "UPDATE user_info SET name=:name, surname=:surname, middle_name=:middle_name, birthday=:birthday, sex=:sex, about=:about, avatar=:avatar WHERE login=:login;";
         $statment = $connect->prepare($sql);
         return $statment->execute($params);
     }
     
     function getInfoUser($param) {
         $connect = $this->connectDB();
-        $sql = "SELECT * from user_info WHERE login = ?";
+        $sql = "SELECT * from user_info WHERE login = ?;";
         $param = [$param];
         $statment = $connect->prepare($sql);
         $statment->execute($param);
         return $statment->fetch(PDO::FETCH_ASSOC);
+    }
+    
+    function addItem($params) {
+        $connect = $this->connectDB();
+        $sql = "INSERT INTO catalog (id, category, title, image, about, price, aviable) VALUES (:id, 'other', :title, :image, :about, :price, '1');";
+        $statment = $connect->prepare($sql);
+        return $statment->execute($params);
+    }
+    
+    function updItem($params){
+        $connect = $this->connectDB();
+        $sql = "UPDATE catalog SET category=:category, title=:title, image=:image, about=:about, price=:price, aviable=:aviable WHERE id=:id;";
+        $statment = $connect->prepare($sql);
+        return $statment->execute($params);
+    }
+    
+    function getItems($param = NULL) {
+        $connect = $this->connectDB();
+        $sql = "SELECT * FROM catalog" . (isset($param) ? " WHERE id = ?" : ";");
+        if(isset($param)){
+            $param = [$param];
+            $statment = $connect->prepare($sql);
+            $statment->execute($param);
+            return $statment->fetch(PDO::FETCH_ASSOC);
+        } else {
+            $statment = $connect->query($sql);
+            return $statment->fetchAll(PDO::FETCH_ASSOC);
+        }
+        
+        
     }
 }
 
