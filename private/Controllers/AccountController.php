@@ -5,8 +5,20 @@ use Dmitriy\Shop\Models\CheckModel;
 use Dmitriy\Shop\Models\RegModel;
 use Dmitriy\Shop\Models\AuthModel;
 use Dmitriy\Shop\Models\UserInfoModel;
+use Dmitriy\Shop\Base\GenerateResponse;
 
 class AccountController {
+    private $check;
+    private $reg;
+    private $auth;
+    private $info;
+    
+    public function __construct() {
+        $this->check = new CheckModel();
+        $this->reg = new RegModel();
+        $this->auth = new AuthModel();
+        $this->info = new UserInfoModel();
+    }
     
     function registrationAction() {
         $title = 'Регистрация';
@@ -19,10 +31,9 @@ class AccountController {
     function reg_userAction(){
         if(isset($_POST['user_data'])){
             $post = $_POST;
-            $check = new CheckModel();
-            $user_data = $check->check_data($post['user_data']);
-            $reg = new RegModel();
-            echo $reg->reg_user($user_data);
+            $user_data = $this->check->check_data($post['user_data']);
+            
+            echo $this->reg->reg_user($user_data);
         }
     }
     
@@ -50,17 +61,15 @@ class AccountController {
     function authAction(){
         if(isset($_POST['auth_data'])){
             $post = $_POST;
-            $check = new CheckModel();
-            $user_data = $check->check_data($post['auth_data']);
-            $auth = new AuthModel();
-            echo $auth->authUser($user_data);
+            $user_data = $this->check->check_data($post['auth_data']);
+            
+            echo $this->auth->authUser($user_data);
         }
     }
     
     function uploadAction(){
         if(!empty($_FILES['file']['name'])){
-            $info = new UserInfoModel();
-            echo $info->uploadAvatar($_FILES);
+            echo $this->info->uploadAvatar($_FILES);
         } else {
             echo "File not found";
         }
@@ -70,19 +79,16 @@ class AccountController {
         session_start();
         if(isset($_POST['user_info'])){
             $post = $_POST;
-            $check = new CheckModel();
-            $user_data = $check->check_data($post['user_info']);
-            $info = new UserInfoModel();
+            $user_data = $this->check->check_data($post['user_info']);
             $user_data += ['login'=>$_SESSION['login']];
-            echo $info->updInfoUser($user_data);
+            echo $this->info->updInfoUser($user_data);
         }
     }
 
     function infoAction() {
         session_start();
         if ($_SESSION['auth'] === 'user' || $_SESSION['auth'] === 'admin'){
-            $info = new UserInfoModel();
-            $user_info = $info->getInfoUser($_SESSION['login']);
+            $user_info = $this->info->getInfoUser($_SESSION['login']);
             $title = 'Личный кабинет';
             $view_filename = 'info_account.php';
             GenerateResponse::generateResponse($view_filename, [

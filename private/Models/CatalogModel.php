@@ -2,11 +2,15 @@
 namespace Dmitriy\Shop\Models;
 use Dmitriy\Shop\Models\ReaderModel;
 
-class ShowsModel {
+class CatalogModel {
+    private $reader;
+    
+    public function __construct(){
+        $this->reader = new ReaderModel();
+    }
     
     function getItem($index = null){
-        $reader = new ReaderModel();
-        $shows_json = $reader->getDataFromFile('../private/files/item_base.txt');
+        $shows_json = $this->reader->getDataFromFile('../private/files/item_base.txt');
         $shows_json .= ']';
         $item = json_decode($shows_json, true);// преаброзуем JSON с true не в объекты
         

@@ -1,5 +1,5 @@
 <?
-namespace Dmitriy\Shop\Controllers;
+namespace Dmitriy\Shop\Base;
 
 class GenerateResponse {
     

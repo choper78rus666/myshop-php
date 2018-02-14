@@ -1,5 +1,6 @@
 <?
 namespace Dmitriy\Shop\Controllers;
+use Dmitriy\Shop\Base\GenerateResponse;
 
 class ContactsController {
     

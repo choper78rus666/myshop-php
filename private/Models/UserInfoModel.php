@@ -3,15 +3,18 @@ namespace Dmitriy\Shop\Models;
 use Dmitriy\Shop\DBConnector\DB;
 
 class UserInfoModel {
+    private $db;
+    
+    public function __construct() {
+        $this->db = new DB();
+    }
     
     function getInfoUser($user){
-        $db = new DB();
-        return $db->getInfoUser($user);
+        return $this->db->getInfoUser($user);
     }
     
     function updInfoUser($data){
-        $db = new DB();
-        return $db->updInfoUser($data);
+        return $this->db->updInfoUser($data);
     }
     
     function uploadAvatar($path){
@@ -37,9 +40,7 @@ class UserInfoModel {
                 return "Format not allowed!";
                 }
             }
-    }
-    
-    
+    } 
 }
 
 ?>
