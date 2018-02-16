@@ -5,6 +5,7 @@
         <title>MyShop - <? echo $title; ?></title>
         <link rel="stylesheet" href="/static/css/style.css">
         <script src="/static/js/jquery-3.2.1.js"></script>
+        <script src="https://vk.com/js/api/openapi.js?152" type="text/javascript"></script>
         <meta name="viewport"
               content="width=device-width,
                        initial-scale=1.0

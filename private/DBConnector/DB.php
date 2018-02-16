@@ -17,6 +17,13 @@ class DB {
         email VARCHAR (25) NOT NULL,
         state VARCHAR (25) NOT NULL);
         
+        CREATE TABLE IF NOT EXISTS accountsVK (
+        id INT(11) PRIMARY KEY,
+        first_name VARCHAR (25) NOT NULL,
+        last_name VARCHAR (25) NOT NULL,
+        nickname VARCHAR (25) NOT NULL,
+        login VARCHAR (25) DEFAULT '');
+        
         CREATE TABLE IF NOT EXISTS user_info (
         login VARCHAR (25) NOT NULL PRIMARY KEY,
         name VARCHAR (25) DEFAULT '',
@@ -52,6 +59,22 @@ class DB {
     function getAccount($param) {
         $connect = $this->connectDB();
         $sql = "SELECT * from accounts WHERE login = ?;";
+        $param = [$param];
+        $statment = $connect->prepare($sql);
+        $statment->execute($param);
+        return $statment->fetch(PDO::FETCH_ASSOC);
+    }
+    
+    function addAccountVK($params) {
+        $connect = $this->connectDB();
+        $sql = "INSERT INTO accountsVK (id, first_name, last_name, nickname) VALUES (:id, :first_name, :last_name, :nickname);";
+        $statment = $connect->prepare($sql);
+        return $statment->execute($params);
+    }
+    
+    function getAccountVK($param) {
+        $connect = $this->connectDB();
+        $sql = "SELECT * from accountsVK WHERE id = ?;";
         $param = [$param];
         $statment = $connect->prepare($sql);
         $statment->execute($param);

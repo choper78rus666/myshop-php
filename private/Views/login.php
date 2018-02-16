@@ -29,6 +29,17 @@
                                     <input form="auth_form" type="submit" value="Отправить">
                                 </td>
                             </tr>
+                            <tr>
+                                <td align="center" colspan="2">
+                                    <br>
+                                    <p>Вход через Вконтакте</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center" colspan="2">
+                                    <button type="button" id="vk_reg">Войти через VK</button>
+                                </td>
+                            </tr>
                         </table>
                     </fieldset>
                 </form>
@@ -36,3 +47,4 @@
         </div>
     </div>
 </div>
+<script src="/static/js/authVK.js"></script>

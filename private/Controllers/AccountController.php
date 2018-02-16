@@ -4,6 +4,7 @@ use Dmitriy\Shop\Models\ReaderModel;
 use Dmitriy\Shop\Models\CheckModel;
 use Dmitriy\Shop\Models\RegModel;
 use Dmitriy\Shop\Models\AuthModel;
+use Dmitriy\Shop\Models\AuthVKModel;
 use Dmitriy\Shop\Models\UserInfoModel;
 use Dmitriy\Shop\Base\GenerateResponse;
 
@@ -11,12 +12,14 @@ class AccountController {
     private $check;
     private $reg;
     private $auth;
+    private $authVK;
     private $info;
     
     public function __construct() {
         $this->check = new CheckModel();
         $this->reg = new RegModel();
         $this->auth = new AuthModel();
+        $this->authVK = new AuthVKModel();
         $this->info = new UserInfoModel();
     }
     
@@ -64,6 +67,14 @@ class AccountController {
             $user_data = $this->check->check_data($post['auth_data']);
             
             echo $this->auth->authUser($user_data);
+        }
+    }
+    
+    function authVKAction(){
+        if(isset($_POST['userVK'])){
+            $post = $_POST;
+            $user_data = $this->check->check_data($post['userVK']);
+            echo $this->authVK->authUserVK($user_data);
         }
     }
     
