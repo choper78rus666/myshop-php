@@ -24,10 +24,12 @@ class AuthVKModel {
                    // Войти под профилем ВК
                     $_SESSION['auth'] = 'user';
                     $_SESSION['login'] = $userVK['id'];
+                    $_SESSION['authVK'] = true;
                     return 'user';
                 }
                    
             } else {
+               // нет профиля ВК - создаём
                 if(!$this->db->addAccountVK($user_data)){
                     return 'not adds';
                 } else {
@@ -36,7 +38,6 @@ class AuthVKModel {
                     return 'user';
                 }
             }
-        
     }
 }
 ?>

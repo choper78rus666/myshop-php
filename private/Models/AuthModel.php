@@ -12,14 +12,18 @@ class AuthModel {
     function authUser($user_data) {
         session_start();
         
-        $all_users = $this->db->getAccount($user_data['login']);
+        $user = $this->db->getAccount($user_data['login']);
 
         
-           if ($all_users['login'] == $user_data['login']) {
-                if (password_verify($user_data['pwd'], $all_users['pwd'])) {
-                    $_SESSION['auth'] = $all_users['state'];
-                    $_SESSION['login'] = $all_users['login'];
-                    return $all_users['state'];
+           if ($user['login'] == $user_data['login']) {
+                if (password_verify($user_data['pwd'], $user['pwd'])) {
+                    if ($_SESSION['authVK'] === true){
+                        $this->db->updAccountVK(['login' => $user['login'], 'id' => $_SESSION['login']]);
+                        unset($_SESSION['authVK']);
+                    }
+                    $_SESSION['auth'] = $user['state'];
+                    $_SESSION['login'] = $user['login'];
+                    return $user['state'];
                 }
                
                 return 'pwd is wrong';

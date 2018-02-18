@@ -47,7 +47,7 @@ class AccountController {
             header('Location: /account/login');
         }
 
-        if ($_SESSION['auth'] === 'user') {
+        if ($_SESSION['auth'] === 'user' && $get !== 'bind'){
             header('Location:/account/user_account');
         } elseif ($_SESSION['auth'] === 'admin'){
             header('Location:/account/admin_account');
@@ -108,7 +108,7 @@ class AccountController {
             ]);
         } else {
             session_unset();
-            header('Location: /account');
+            header('Location: /account/login');
         }
         
 
@@ -118,13 +118,14 @@ class AccountController {
         session_start();
         if ($_SESSION['auth'] !== 'user'){
             session_unset();
-            header('Location: /account');
+            header('Location: /account/login');
         }
         
         $title = 'Личный кабинет';
         $view_filename = 'user_account.php';
         GenerateResponse::generateResponse($view_filename, [
-            'title' => $title
+            'title' => $title,
+            'bind' => $_SESSION['authVK']
         ]);
 
     }
@@ -133,7 +134,7 @@ class AccountController {
         session_start();
         if ($_SESSION['auth'] !== 'admin'){
             session_unset();
-            header('Location: /account');
+            header('Location: /account/login');
         }
         
         $title = 'Личный кабинет';

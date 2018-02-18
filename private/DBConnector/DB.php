@@ -81,6 +81,13 @@ class DB {
         return $statment->fetch(PDO::FETCH_ASSOC);
     }
     
+    function updAccountVK($params){
+        $connect = $this->connectDB();
+        $sql = "UPDATE accountsVK SET login = :login WHERE id=:id;";
+        $statment = $connect->prepare($sql);
+        return $statment->execute($params);
+    }
+    
     function updInfoUser($params){
         $connect = $this->connectDB();
         $sql = "UPDATE user_info SET name=:name, surname=:surname, middle_name=:middle_name, birthday=:birthday, sex=:sex, about=:about, avatar=:avatar WHERE login=:login;";

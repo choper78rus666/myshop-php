@@ -1,5 +1,6 @@
 <?
 namespace Dmitriy\Shop\Base;
+use Dmitriy\Shop\Controllers\IndexController;
 
 class Router{
     
