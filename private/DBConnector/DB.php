@@ -31,7 +31,7 @@ class DB {
         middle_name VARCHAR (25) DEFAULT '',
         birthday DATE DEFAULT NULL,
         sex VARCHAR (25) DEFAULT 'male',
-        about VARCHAR (25) DEFAULT '',
+        about VARCHAR (150) DEFAULT '',
         avatar VARCHAR (25) DEFAULT 'default.jpg');
         
         CREATE TABLE IF NOT EXISTS catalog (
@@ -39,7 +39,7 @@ class DB {
         category VARCHAR (25) DEFAULT 'other',
         title VARCHAR (200) DEFAULT '',
         image VARCHAR (50) DEFAULT 'defaul.png',
-        about VARCHAR (5000) DEFAULT '',
+        about VARCHAR (500) DEFAULT '',
         price INT (10) NOT NULL DEFAULT '0',
         aviable bit(1) DEFAULT b'0');";
         

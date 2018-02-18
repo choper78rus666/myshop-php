@@ -101,9 +101,10 @@ class AccountController {
         if ($_SESSION['auth'] === 'user' || $_SESSION['auth'] === 'admin'){
             $user_info = $this->info->getInfoUser($_SESSION['login']);
             $title = 'Личный кабинет';
-            $view_filename = 'info_account.php';
+            $view_filename = $_SESSION['auth'] === 'admin' ? 'admin_account.php' : 'user_account.php';
             GenerateResponse::generateResponse($view_filename, [
                 'title' => $title,
+                'content' => 'info_account.php',
                 'user_info' => $user_info
             ]);
         } else {
