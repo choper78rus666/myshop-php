@@ -28,7 +28,7 @@
                         </table>
                         <br><br>
                         <div style="float: right">
-                            <input id="add" type="submit" value="Добавить">
+                            <a href="/catalog/item_edit/0">Добавить</a>
                         </div>
                         
                     </fieldset>

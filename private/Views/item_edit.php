@@ -8,10 +8,10 @@
                         <table class=lk_form>
                             <tr>
                                 <td>
-                                    <div>ID товара:</div>
+                                    <label>ID товара:</label>
                                 </td>
                                 <td>
-                                    <div><? echo $item['id']; ?></div>
+                                    <input id="id_item" type="text" value="<? echo $item['id']; ?>" disabled>
                                 </td>
                             </tr>
                             <tr>
@@ -28,19 +28,18 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <label for="about">Наименование товара:</label>
+                                    <label for="title">Наименование товара:</label>
                                 </td>
                                 <td>
-                                    <textarea id="about" cols="30" rows="5" maxlength="200" required><? echo $item['title']; ?></textarea>
+                                    <textarea id="title" cols="30" rows="5" maxlength="200" required><? echo $item['title']; ?></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <label>Наличие товара</label>
+                                    <label for="count">Количество:</label>
                                 </td>
                                 <td>
-                                    <label><input id="aviable" name="aviable" type="radio" <? echo $item['aviable'] === '0' ?:'checked'; ?>>В наличии</label>
-                                    <label><input id="no_aviable" name="aviable" type="radio" <? echo $item['aviable'] === '1' ?:'checked'; ?>>Нет на складе</label>
+                                    <input id="count" type="number" rub value="<? echo $item['count']; ?>" required>
                                 </td>
                             </tr>
                             <tr>
@@ -78,8 +77,8 @@
                         </table>
                     </fieldset>
                 </form>
-                
             </div>
         </div>
     </div>
 </div>
+<script src="/static/js/item_edit.js"></script>

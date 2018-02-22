@@ -8,12 +8,7 @@ class CheckModel {
 
         if(isset($data)){
             foreach($data as $key => $db){
-                
                 $data[$key] = $this->check_input($data[$key]);
-                
-                if(!$data[$key]){
-                    return false;
-                }
             }
             return $data;
         }

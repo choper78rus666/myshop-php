@@ -132,17 +132,21 @@ class AccountController {
     }
 
     function admin_accountAction() {
-        session_start();
-        if ($_SESSION['auth'] !== 'admin'){
-            session_unset();
-            header('Location: /account/login');
-        }
+        $this->isAdmin();
         
         $title = 'Личный кабинет';
         $view_filename = 'admin_account.php';
         GenerateResponse::generateResponse($view_filename, [
             'title' => $title
         ]);
+    }
+    
+    function isAdmin(){
+        session_start();
+        if ($_SESSION['auth'] !== 'admin'){
+            session_unset();
+            header('Location: /');
+        }
     }
 }
 ?>

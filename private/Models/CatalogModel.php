@@ -1,14 +1,14 @@
 <?
 namespace Dmitriy\Shop\Models;
-use Dmitriy\Shop\Models\ReaderModel;
+use Dmitriy\Shop\Models\FileModel;
 use Dmitriy\Shop\DBConnector\DB;
 
 class CatalogModel {
-    private $reader;
+    private $fileModel;
     private $db;
     
     public function __construct(){
-        $this->reader = new ReaderModel();
+        $this->fileModel = new FileModel();
         $this->db = new DB();
     }
     
@@ -17,14 +17,22 @@ class CatalogModel {
     }
     
     function addItem($data){
-        $this->db->additem($data);
+        $this->db->addItem($data);
+    }
+    
+    function updItem($data){
+        return $this->db->updItem($data);
+    }
+    
+    function uploadItem($path){
+        return $this->fileModel->imageUpload($path, "../public/static/images/");
     }
     
     
     // Оставил , возможно пригодиться для добавление товаров с дампа
     
     //    function getItem($index = null){
-//        $shows_json = $this->reader->getDataFromFile('../private/files/item_base.txt');
+//        $shows_json = $this->fileModel->getDataFromFile('../private/files/item_base.txt');
 //        $shows_json .= ']';
 //        $item = json_decode($shows_json, true);// преаброзуем JSON с true не в объекты
 //        foreach($item as $value){

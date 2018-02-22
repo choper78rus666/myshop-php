@@ -41,7 +41,7 @@ class DB {
         image VARCHAR (50) DEFAULT 'defaul.png',
         about VARCHAR (500) DEFAULT '',
         price INT (10) NOT NULL DEFAULT '0',
-        aviable bit(1) DEFAULT b'0');";
+        count INT(11) NOT NULL DEFAULT '0');";
         
         $conection->exec($sql);
         return $conection;
@@ -106,14 +106,14 @@ class DB {
     
     function addItem($params) {
         $connect = $this->connectDB();
-        $sql = "INSERT INTO catalog (id, category, title, image, about, price, aviable) VALUES (:id, 'other', :title, :image, :about, :price, '1');";
+        $sql = "INSERT INTO catalog (category, title, image, about, price, count) VALUES (:category, :title, :image, :about, :price, :count);";
         $statment = $connect->prepare($sql);
         return $statment->execute($params);
     }
     
     function updItem($params){
         $connect = $this->connectDB();
-        $sql = "UPDATE catalog SET category=:category, title=:title, image=:image, about=:about, price=:price, aviable=:aviable WHERE id=:id;";
+        $sql = "UPDATE catalog SET category=:category, title=:title, image=:image, about=:about, price=:price, count=:count WHERE id=:id;";
         $statment = $connect->prepare($sql);
         return $statment->execute($params);
     }
