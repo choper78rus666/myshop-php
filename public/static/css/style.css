@@ -18,6 +18,31 @@ a:hover {
     opacity: 1;
 }
 
+.cart {
+    position: absolute;
+    right: 20px;
+    align-self: center;
+}
+
+#cart_img {
+    display: block;
+    background: url(../images/cart.png) no-repeat;
+    background-size: contain;
+    width: 30px;
+    height: 30px;
+}
+
+#cart {
+    margin-left: 10px;
+    background: #31ba31;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.8em;
+    border-radius: 25px;
+}
 
 /*Header*/
 .header, #footer {

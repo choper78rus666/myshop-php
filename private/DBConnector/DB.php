@@ -41,10 +41,36 @@ class DB {
         image VARCHAR (50) DEFAULT 'defaul.png',
         about VARCHAR (500) DEFAULT '',
         price INT (10) NOT NULL DEFAULT '0',
-        count INT(11) NOT NULL DEFAULT '0');";
+        count INT(11) NOT NULL DEFAULT '0');
+        
+        CREATE TABLE IF NOT EXISTS cart (
+        session_id VARCHAR (50) NOT NULL,
+        item_id INT (11) NOT NULL,
+        count INT (11) NOT NULL,
+        last_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP);";
         
         $conection->exec($sql);
         return $conection;
+    }
+    
+    function addSQL($params, $sql) {
+        $connect = $this->connectDB();
+        $statment = $connect->prepare($sql);
+        return $statment->execute($params);
+    }
+    
+    function getSQL($param, $sql) {
+        $connect = $this->connectDB();
+        $param = [$param];
+        $statment = $connect->prepare($sql);
+        $statment->execute($param);
+        return $statment->fetch(PDO::FETCH_ASSOC);
+    }
+    
+    function updSQL($params, $sql){
+        $connect = $this->connectDB();
+        $statment = $connect->prepare($sql);
+        return $statment->execute($params);
     }
     
     function addAccount($params) {
