@@ -45,6 +45,7 @@ class DB {
         
         CREATE TABLE IF NOT EXISTS cart (
         session_id VARCHAR (50) NOT NULL,
+        login VARCHAR (25) DEFAULT '', 
         item_id INT (11) NOT NULL,
         count INT (11) NOT NULL,
         last_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP);";
@@ -59,18 +60,16 @@ class DB {
         return $statment->execute($params);
     }
     
-    function getSQL($param, $sql) {
+    function getSQL($param=NULL, $sql) {
         $connect = $this->connectDB();
-        $param = [$param];
-        $statment = $connect->prepare($sql);
-        $statment->execute($param);
-        return $statment->fetch(PDO::FETCH_ASSOC);
-    }
-    
-    function updSQL($params, $sql){
-        $connect = $this->connectDB();
-        $statment = $connect->prepare($sql);
-        return $statment->execute($params);
+        if(isset($param)){
+            $statment = $connect->prepare($sql);
+            $statment->execute($param);
+            return $statment->fetch(PDO::FETCH_ASSOC);
+        } else {
+            $statment = $connect->query($sql);
+            return $statment->fetchAll(PDO::FETCH_ASSOC);
+        }
     }
     
     function addAccount($params) {
