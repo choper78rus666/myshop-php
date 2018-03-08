@@ -3,7 +3,7 @@
                 <div class="row_container center_flex">
                     <h1><em>MyShop</em></h1>
                     <div class="cart">
-                        <div id="cart">10</div>
+                        <div id="cart"></div>
                         <a href="/cart"><div id="cart_img"></div></a>
                     </div>
                 </div>

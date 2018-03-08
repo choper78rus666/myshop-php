@@ -44,11 +44,16 @@ class DB {
         count INT(11) NOT NULL DEFAULT '0');
         
         CREATE TABLE IF NOT EXISTS cart (
+        id_cart INT AUTO_INCREMENT PRIMARY KEY,
         session_id VARCHAR (50) NOT NULL,
-        login VARCHAR (25) DEFAULT '', 
+        login VARCHAR (25) DEFAULT '',
+        last_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+        
+        CREATE TABLE IF NOT EXISTS cart_item (
+        id_cart INT NOT NULL,
         item_id INT (11) NOT NULL,
-        count INT (11) NOT NULL,
-        last_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP);";
+        count INT (11) NOT NULL
+        )";
         
         $conection->exec($sql);
         return $conection;

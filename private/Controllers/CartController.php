@@ -15,6 +15,14 @@ class CartController {
         $this->account = new AccountController();
     }
     
+    function indexAction(){
+        $title = 'Корзина';
+        $view_filename = 'cart.php';
+        GenerateResponse::generateResponse($view_filename, [
+            'title' => $title
+        ]);
+    }
+    
     function addAction(){
         session_start();
         
@@ -22,17 +30,13 @@ class CartController {
             $post = $_POST;
             $id_item = $post['id_item'];
             
-            echo $this->cart->addCart($id_item);
+            echo $this->cart->addCartItem($id_item);
         }
     }
     
-    function indexAction(){
-        $title = 'Каталог';
-        $view_filename = 'catalog.php';
-        GenerateResponse::generateResponse($view_filename, [
-            'title' => $title,
-            'item' => $this->item->getItem()
-        ]);
+    function getAllItemAction(){
+        session_start();
+        echo $this->cart->getCartCountAllItem();
     }
 }
 

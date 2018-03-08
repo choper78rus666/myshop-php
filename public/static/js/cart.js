@@ -1,6 +1,17 @@
 jQuery(document).ready(function(){
    'use strict';
     
+    jQuery.ajax({
+        url: '/cart/getAllItem',
+        success: function(response){
+            console.log('response_cart ', response);
+             document.getElementById('cart').innerHTML = response;
+        },
+        error: function(err){
+            console.log("Error", err);
+        }
+    });
+    
     jQuery('button#add_cart').click(
         function(event){
         
