@@ -10,14 +10,19 @@ class RegModel {
     }
     
     function reg_user($user_data){
-        $all_users = $this->db->getAccount($user_data['login']);
+        $sql = "SELECT * from accounts WHERE login = ?;";
+        $user = $this->db->getSQL([$user_data['login']], $sql);
 
-        if ($all_users) {
+        if ($user) {
             return 'user enabled';
         }
         
         $user_data['pwd'] = password_hash($user_data['pwd'], PASSWORD_DEFAULT);
-        if(!$user_data or !$this->db->addAccount($user_data)){
+        $sql = "INSERT INTO accounts (login, pwd, email, state) VALUES (:login, :pwd, :email, :state);
+        INSERT INTO user_info (login) VALUES (:login);
+        ";
+        
+        if(!$user_data or !$this->db->addSQL($user_data, $sql)){
             return 'not adds';
         } else {
             return 'user add';

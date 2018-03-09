@@ -28,7 +28,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <input type="button" name="<?php echo $item[$index]['id'] ?>" value="купить">
+                            <button id="add_cart" value="<? echo $item['id']; ?>">Купить</button>
                         </td>
                     </tr>
                 </table>

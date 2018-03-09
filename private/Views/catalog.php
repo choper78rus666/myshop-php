@@ -11,7 +11,7 @@
                                 <th colspan="3">Стоимость</th>
                             </tr>
                             <? for($i = 0; $i < count($item); $i++): ?>
-                            <tr>
+                            <tr id="back<? echo $i%2;?>">
                                 <td>
                                     <a href="<? echo 'catalog/item/'.$item[$i]['id']; ?>">
                                         <? echo $item[$i]['title']; ?>
@@ -24,14 +24,11 @@
                                     <p><strong><? echo $item[$i]['price']; ?> руб.</strong></p>
                                 </td>
                                 <td>
-                                    <input type="checkbox" name="<? echo $item[$i]['id']; ?>">
+                                    <button id="add_cart" value="<? echo $item[$i]['id']; ?>">Купить</button>
                                 </td>
                             </tr>
                             <? endfor; ?>
                         </table>
-                        <input id="reset" type="reset" value="Отменить выбор">
-                        <br><br>
-                        <input id="buy" type="submit" value="Купить">
                     </fieldset>
                 </form>
             </div>

@@ -60,7 +60,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <div><img id="image" src="<? echo $item['image']; ?>" height="150px"></div>
+                                    <div><img id="image" src="<? echo $item['image'] ? :'/static/images/default.png'; ?>" height="150px"></div>
                                     </td><td>
                                     <label>Картинка товара<br></label>
                                     <input id="item" type="file" name="item" accept="image/*"  value="<? echo $item['image']; ?>">

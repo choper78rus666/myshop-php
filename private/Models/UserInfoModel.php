@@ -13,12 +13,14 @@ class UserInfoModel {
         $this->db = new DB();
     }
     
-    function getInfoUser($user){
-        return $this->db->getInfoUser($user);
+    function getInfoUser($param){
+        $sql = "SELECT * from user_info WHERE login = ?;";
+        return $this->db->getSQL([$param], $sql);
     }
     
-    function updInfoUser($data){
-        return $this->db->updInfoUser($data);
+    function updInfoUser($params){
+        $sql = "UPDATE user_info SET name=:name, surname=:surname, middle_name=:middle_name, birthday=:birthday, sex=:sex, about=:about, avatar=:avatar WHERE login=:login;";
+        return $this->db->addSQL($params, $sql);
     }
     
     function uploadAvatar($path){

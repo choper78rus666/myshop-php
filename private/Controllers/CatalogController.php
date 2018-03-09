@@ -33,7 +33,7 @@ class CatalogController {
             $view_filename = 'items.php';
             GenerateResponse::generateResponse($view_filename, [
                 'title' => $title,
-                'item' => $this->item->getItem($index)
+                'item' => $this->item->getItem([$index])
             ]);
         }
     }
@@ -48,7 +48,7 @@ class CatalogController {
             $view_filename = 'admin_account.php';
             GenerateResponse::generateResponse($view_filename, [
                 'title' => $title,
-                'item' => $index > 0 ? $this->item->getItem($index): ['id' => 0],
+                'item' => $index > 0 ? $this->item->getItem([$index]): ['id' => 0],
                 'content' => 'item_edit.php'
             ]);
         } echo 0;
@@ -92,6 +92,14 @@ class CatalogController {
                 'item' => $this->item->getItem(),
                 'content' => 'items_edit.php'
             ]);
+        }
+    }
+    
+    function deleteAction($get){
+        $this->account->isAdmin();
+        if(isset($get)){
+            $this->item->deleteItem($get);
+            header('Location: /catalog/edit');
         }
     }
     

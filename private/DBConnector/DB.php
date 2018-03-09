@@ -65,103 +65,16 @@ class DB {
         return $statment->execute($params);
     }
     
-    function getSQL($param=NULL, $sql) {
+    function getSQL($param=NULL, $sql, $all=false) {
         $connect = $this->connectDB();
         if(isset($param)){
             $statment = $connect->prepare($sql);
             $statment->execute($param);
-            return $statment->fetch(PDO::FETCH_ASSOC);
+            return $all ? $statment->fetchAll(PDO::FETCH_ASSOC) : $statment->fetch(PDO::FETCH_ASSOC);
         } else {
             $statment = $connect->query($sql);
             return $statment->fetchAll(PDO::FETCH_ASSOC);
         }
-    }
-    
-    function addAccount($params) {
-        $connect = $this->connectDB();
-        $sql = "INSERT INTO accounts (login, pwd, email, state) VALUES (:login, :pwd, :email, :state);
-        INSERT INTO user_info (login) VALUES (:login);
-        ";
-        $statment = $connect->prepare($sql);
-        return $statment->execute($params);
-    }
-    
-    function getAccount($param) {
-        $connect = $this->connectDB();
-        $sql = "SELECT * from accounts WHERE login = ?;";
-        $param = [$param];
-        $statment = $connect->prepare($sql);
-        $statment->execute($param);
-        return $statment->fetch(PDO::FETCH_ASSOC);
-    }
-    
-    function addAccountVK($params) {
-        $connect = $this->connectDB();
-        $sql = "INSERT INTO accountsVK (id, first_name, last_name, nickname) VALUES (:id, :first_name, :last_name, :nickname);";
-        $statment = $connect->prepare($sql);
-        return $statment->execute($params);
-    }
-    
-    function getAccountVK($param) {
-        $connect = $this->connectDB();
-        $sql = "SELECT * from accountsVK WHERE id = ?;";
-        $param = [$param];
-        $statment = $connect->prepare($sql);
-        $statment->execute($param);
-        return $statment->fetch(PDO::FETCH_ASSOC);
-    }
-    
-    function updAccountVK($params){
-        $connect = $this->connectDB();
-        $sql = "UPDATE accountsVK SET login = :login WHERE id=:id;";
-        $statment = $connect->prepare($sql);
-        return $statment->execute($params);
-    }
-    
-    function updInfoUser($params){
-        $connect = $this->connectDB();
-        $sql = "UPDATE user_info SET name=:name, surname=:surname, middle_name=:middle_name, birthday=:birthday, sex=:sex, about=:about, avatar=:avatar WHERE login=:login;";
-        $statment = $connect->prepare($sql);
-        return $statment->execute($params);
-    }
-    
-    function getInfoUser($param) {
-        $connect = $this->connectDB();
-        $sql = "SELECT * from user_info WHERE login = ?;";
-        $param = [$param];
-        $statment = $connect->prepare($sql);
-        $statment->execute($param);
-        return $statment->fetch(PDO::FETCH_ASSOC);
-    }
-    
-    function addItem($params) {
-        $connect = $this->connectDB();
-        $sql = "INSERT INTO catalog (category, title, image, about, price, count) VALUES (:category, :title, :image, :about, :price, :count);";
-        $statment = $connect->prepare($sql);
-        return $statment->execute($params);
-    }
-    
-    function updItem($params){
-        $connect = $this->connectDB();
-        $sql = "UPDATE catalog SET category=:category, title=:title, image=:image, about=:about, price=:price, count=:count WHERE id=:id;";
-        $statment = $connect->prepare($sql);
-        return $statment->execute($params);
-    }
-    
-    function getItems($param = NULL) {
-        $connect = $this->connectDB();
-        $sql = "SELECT * FROM catalog" . (isset($param) ? " WHERE id = ?" : ";");
-        if(isset($param)){
-            $param = [$param];
-            $statment = $connect->prepare($sql);
-            $statment->execute($param);
-            return $statment->fetch(PDO::FETCH_ASSOC);
-        } else {
-            $statment = $connect->query($sql);
-            return $statment->fetchAll(PDO::FETCH_ASSOC);
-        }
-        
-        
     }
 }
 

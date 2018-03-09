@@ -16,10 +16,12 @@ class CartController {
     }
     
     function indexAction(){
+        session_start();
         $title = 'Корзина';
         $view_filename = 'cart.php';
         GenerateResponse::generateResponse($view_filename, [
-            'title' => $title
+            'title' => $title,
+            'item_cart' => $this->cart->getCartAllItems()
         ]);
     }
     
@@ -38,6 +40,15 @@ class CartController {
         session_start();
         echo $this->cart->getCartCountAllItem();
     }
+    
+    function deleteAction($get){
+        session_start();
+        if(isset($get)){
+            $this->cart->deleteItem($get);
+            header('Location: /cart');
+        }
+    }
+    
 }
 
 ?>

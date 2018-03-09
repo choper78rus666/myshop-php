@@ -12,22 +12,35 @@ class CatalogModel {
         $this->db = new DB();
     }
     
-    function getItem($index = null){
-        return !isset($index) ? $this->db->getItems() : $this->db->getItems($index);
+    function getItem($index = NULL){
+        $sql = "SELECT * FROM catalog" . (isset($index) ? " WHERE id = ?" : ";");
+        return $this->db->getSQL($index, $sql);
     }
     
-    function addItem($data){
-        $this->db->addItem($data);
+    function addItem($params){
+        $sql = "INSERT INTO catalog (category, title, image, about, price, count) VALUES (:category, :title, :image, :about, :price, :count);";
+        
+        return $this->db->addSQL($params, $sql);
     }
     
-    function updItem($data){
-        return $this->db->updItem($data);
+    function updItem($params){
+        $sql = "UPDATE catalog SET category=:category, title=:title, image=:image, about=:about, price=:price, count=:count WHERE id=:id;";
+        
+        return $this->db->addSQL($params, $sql);
     }
     
     function uploadItem($path){
         return $this->fileModel->imageUpload($path, "../public/static/images/");
     }
     
+    function deleteItem($id){
+        $params = [
+            'id' => $id
+        ];
+        
+        $sql = "DELETE FROM catalog WHERE id = :id";
+        $this->db->addSQL($params, $sql);
+    }
     
     // Оставил , возможно пригодиться для добавление товаров с дампа
     

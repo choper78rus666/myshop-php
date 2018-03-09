@@ -11,14 +11,16 @@ class AuthModel {
     
     function authUser($user_data) {
         session_start();
-        
-        $user = $this->db->getAccount($user_data['login']);
+       
+        $sql = "SELECT * from accounts WHERE login = ?;";
+        $user = $this->db->getSQL([$user_data['login']], $sql);
 
         
            if ($user['login'] == $user_data['login']) {
                 if (password_verify($user_data['pwd'], $user['pwd'])) {
                     if ($_SESSION['authVK'] === true){
-                        $this->db->updAccountVK(['login' => $user['login'], 'id' => $_SESSION['login']]);
+                        $sql = "UPDATE accountsVK SET login = :login WHERE id=:id;";
+                        $this->db->addSQL(['login' => $user['login'], 'id' => $_SESSION['login']], $sql);
                         unset($_SESSION['authVK']);
                     }
                     $_SESSION['auth'] = $user['state'];

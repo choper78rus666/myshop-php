@@ -11,12 +11,13 @@ class AuthVKModel {
     
     function authUserVK($user_data) {
         session_start();
-        
-        $userVK = $this->db->getAccountVK($user_data['id']);
+        $sql = "SELECT * from accountsVK WHERE id = ?;";
+        $userVK = $this->db->getSQL([$user_data['id']], $sql);
         
            if ($userVK['id'] === $user_data['id']) {
                if(!empty($userVK['login'])){
-                    $user = $this->db->getAccount($userVK['login']);
+                    $sql = "SELECT * from accounts WHERE login = ?;";
+                    $user = $this->db->getSQL([$userVK['login']], $sql);
                     $_SESSION['auth'] = $user['state'];
                     $_SESSION['login'] = $user['login'];
                     return $user['state'];
@@ -30,11 +31,13 @@ class AuthVKModel {
                    
             } else {
                // нет профиля ВК - создаём
-                if(!$this->db->addAccountVK($user_data)){
+                $sql = "INSERT INTO accountsVK (id, first_name, last_name, nickname) VALUES (:id, :first_name, :last_name, :nickname);";
+                if(!$this->db->addSQL($user_data, $sql)){
                     return 'not adds';
                 } else {
                     $_SESSION['auth'] = 'user';
                     $_SESSION['login'] = $userVK['id'];
+                    $_SESSION['authVK'] = true;
                     return 'user';
                 }
             }

@@ -91,5 +91,27 @@ class CartModel {
         return isset($resault) ? $resault: 0;
     }
     
+    function getCartAllItems(){
+        $params = [
+            'session_id' => session_id(),
+            'login' => empty($_SESSION['login']) ? '': $_SESSION['login']
+        ];
+        
+        $sql = "SELECT catalog.id id, catalog.image image, catalog.title title, cart_item.count count, catalog.price*cart_item.count price FROM cart_item, cart, catalog WHERE (cart.session_id=:session_id OR cart.login=:login) AND cart.id_cart = cart_item.id_cart AND catalog.id = cart_item.item_id;";
+        $resault = $this->db->getSQL($params, $sql, true);
+        return isset($resault) ? $resault: 0;
+    }
+    
+    function deleteItem($id){
+        $params = [
+            'session_id' => session_id(),
+            'login' => empty($_SESSION['login']) ? '': $_SESSION['login'],
+            'item_id' => $id
+        ];
+        
+        $sql = "DELETE FROM cart_item WHERE id_cart = (SELECT id_cart FROM cart WHERE session_id=:session_id OR login=:login) AND item_id = :item_id;";
+        $this->db->addSQL($params, $sql);
+    }
+    
 }
 ?>
