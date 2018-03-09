@@ -147,6 +147,10 @@ a:hover {
     max-width: 400px;
 }
 
+small {
+    font-size: x-small;
+}
+
 .items {
     background: #e0f0f0;
     border-radius: 6px;
@@ -317,6 +321,8 @@ a:hover {
 
 .flex_nav_but a{
     flex: 5;
+    height: 23px;
+    line-height: 22px;
     margin: 1px 1px;
     text-align: center;
     border: solid 1px black;
