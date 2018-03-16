@@ -5,30 +5,30 @@
                 <form action="#" method="post">
                     <fieldset>
                         <legend>Каталог товаров</legend>
-                        <table class="catalog">
-                            <tr>
-                                <th>Описание товара</th>
-                                <th colspan="3">Стоимость</th>
-                            </tr>
+                        <div class="catalog">
+                            <div class="row_container">
+                                <div class="flex4">Описание товара</div>
+                                <div class="flex2 title-price">Стоимость</div>
+                            </div>
                             <? for($i = 0; $i < count($item); $i++): ?>
-                            <tr id="back<? echo $i%2;?>">
-                                <td>
+                            <div class="row_container" id="back<? echo $i%2;?>">
+                                <div class="flex3">
                                     <a href="<? echo 'catalog/item/'.$item[$i]['id']; ?>">
                                         <? echo $item[$i]['title']; ?>
                                     </a>
-                                </td>
-                                <td>
+                                </div>
+                                <div class="flex1">
                                     <img src="<? echo $item[$i]['image']; ?>" height="40px" alt="нет изображения">
-                                </td>
-                                <td>  
+                                </div>
+                                <div class="flex1">  
                                     <p><strong><? echo $item[$i]['price']; ?> руб.</strong></p>
-                                </td>
-                                <td>
+                                </div>
+                                <div class="flex1">
                                     <button id="add_cart" value="<? echo $item[$i]['id']; ?>">Купить</button>
-                                </td>
-                            </tr>
+                                </div>
+                            </div>
                             <? endfor; ?>
-                        </table>
+                        </div>
                     </fieldset>
                 </form>
             </div>

@@ -15,15 +15,20 @@
             <br>
     <!-- Навигация -->
             <div class="flex_navic row_container direction_row">
-                <div class="flex_nav_but"><a href="/" target="_self">Главная</a>
+                <div class="flex_nav_but">
+                    <a href="/" target="_self">Главная</a>
                 </div>
-                <div class="flex_nav_but"><a href="/catalog">Каталог</a>
+                <div class="flex_nav_but">
+                    <a href="/catalog">Каталог</a>
                 </div>
-                <div class="flex_nav_but"><a href="/account/registration">Регистрация</a>
+                <div class="flex_nav_but">
+                    <a href="/account/registration">Регистрация</a>
                 </div>
-                <div class="flex_nav_but"><a href="/contacts">Контакты</a>
+                <div class="flex_nav_but">
+                    <a href="/contacts">Контакты</a>
                 </div>
-                <div class="flex_nav_but"><a href="/account/login">Личный кабинет</a>
+                <div class="flex_nav_but">
+                    <a href="/account/login">Личный кабинет</a>
                 </div>
             </div>
             <br>

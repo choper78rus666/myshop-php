@@ -8,35 +8,36 @@
                         <? if(!$item_cart): ?>
                         <div>Ваша корзина пуста</div>
                         <? else: ?>
-                        <table class="catalog">
-                            <tr>
-                                <th>Описание товара</th>
-                                <th></th>
-                                <th>Количество</th>
-                                <th>Стоимость</th>
-                            </tr>
+                        <div class="catalog">
+                            <div class="row_container">
+                                <div class="flex4">Описание товара</div>
+                                <div class="flex1 cart-count">Количество</div>
+                                <div class="flex2 cart-price">Стоимость</div>
+                            </div>
                             <? for($i = 0; $i < count($item_cart); $i++): $order_sum += $item_cart[$i]['price']?>
-                            <tr id="back<? echo $i%2;?>">
-                                <td>
-                                    <a href="<? echo '/catalog/item/'.$item_cart[$i]['id']; ?>">
-                                        <? echo $item_cart[$i]['title']; ?>
-                                    </a>
-                                </td>
-                                <td>
-                                    <img src="<? echo $item_cart[$i]['image']; ?>" height="40px" alt="нет изображения">
-                                </td>
-                                <td>
+                            <div class="row_container" id="back<? echo $i%2;?>">
+                                <div class="flex4 row_container">
+                                    <div class="flex3">
+                                        <a href="<? echo '/catalog/item/'.$item_cart[$i]['id']; ?>">
+                                            <? echo $item_cart[$i]['title']; ?>
+                                        </a>
+                                    </div>
+                                    <div class="flex1">
+                                        <img src="<? echo $item_cart[$i]['image']; ?>" height="40px" alt="нет изображения">
+                                    </div>
+                                </div>
+                                <div class="flex1 text-center">
                                     <p><strong><? echo $item_cart[$i]['count']; ?></strong></p>
-                                </td>
-                                <td>
+                                </div>
+                                <div class="flex1 text-center">
                                     <p><strong><? echo $item_cart[$i]['price']; ?> руб.</strong></p>
-                                </td>
-                                <td>  
+                                </div>
+                                <div class="flex1">  
                                     <a href="<? echo '/cart/delete/'.$item_cart[$i]['id']; ?>">Удалить</a>
-                                </td>
-                            </tr>
+                                </div>
+                            </div>
                             <? endfor; ?>
-                        </table>
+                        </div>
                         <p>В корзине товаров <? echo count($item_cart); ?> на сумму: <? echo $order_sum; ?> руб.</p>
                         <br><br>
                         <div style="float: right">

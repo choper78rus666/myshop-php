@@ -170,12 +170,16 @@ small {
 }
 
 /*каталог*/
-.catalog tr {
+.catalog {
     font-size: 10pt;
 }
 
 .catalog p {
     width: 70px;
+}
+
+.title-price {
+    min-width: 170px;
 }
 
 #back0 {
@@ -184,6 +188,15 @@ small {
 
 #reset {
     margin-left:450px;
+}
+
+/*корзина*/
+.cart-count{
+    min-width: 70px;
+}
+
+.cart-price{
+    min-width: 125px;
 }
 
 /*карточка товара*/
@@ -216,7 +229,7 @@ small {
     margin: 0 auto;
 }
 
-#lk_info {
+#lk_info, .text-center {
     text-align: center;
 }
 
@@ -334,6 +347,14 @@ small {
     flex: 5;
     margin: 2px 1px;
     display: flex;
+}
+
+.flex4 {
+    flex:4;
+}
+
+.flex3 {
+    flex:3;
 }
 
 .flex2 {
