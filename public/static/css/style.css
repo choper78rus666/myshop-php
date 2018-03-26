@@ -237,6 +237,12 @@ small {
     resize: none;
 }
 
+.fix_col {
+    min-width: 170px;
+}
+
+
+
 /*контакты*/
 .center {
     width: 50%;
