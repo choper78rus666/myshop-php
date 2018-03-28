@@ -2,45 +2,38 @@
     <div class="row_container">
         <div class="flex1">
             <div class="content">
-                <form id ="auth_form" method="post">
+                <form id="auth_form" method="post">
                     <fieldset>
                         <legend>Авторизация пользователя</legend>
-                        <table class="lk_form">
-                            <tr>
-                                <td>
-                                    <label for="login">Login</label>
-                                </td>
-                                <td>
-                                    <input id="login" type="text" required>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label for="pass">Password</label>
-                                </td>
-                                <td>
-                                    <input id="pass" type="password" required>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="center" colspan="2">
+                        <div class="lk_form center">
+                            <div class="row_container">
+                                <div class="flex1">
+                                    <div class="direction_col">
+                                        <label for="login">Login</label>
+                                        <label for="pass">Password</label>
+                                    </div>
+                                </div>
+                                <div class="flex1">
+                                    <div class="direction_col">
+                                        <input id="login" type="text" required>
+                                        <input id="pass" type="password" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row_container center_flex">
+                                <div align="center">
                                     <div id="response">Введите данные для входа</div>
-                                <br>
-                                    <input form="auth_form" type="submit" value="Отправить">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="center" colspan="2">
                                     <br>
+                                    <input form="auth_form" type="submit" value="Отправить">
+                                </div>
+                            </div>
+                            <div class="row_container center_flex">
+                                <div align="center">
                                     <p>Вход через Вконтакте</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="center" colspan="2">
                                     <button type="button" id="vk_reg">Войти через VK</button>
-                                </td>
-                            </tr>
-                        </table>
+                                </div>
+                            </div>
+                        </div>
                     </fieldset>
                 </form>
             </div>

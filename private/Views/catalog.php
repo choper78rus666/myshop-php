@@ -23,7 +23,7 @@
                                 <div class="flex1">  
                                     <p><strong><? echo $item[$i]['price']; ?> руб.</strong></p>
                                 </div>
-                                <div class="flex1">
+                                <div class="flex1 align_center_flex">
                                     <button id="add_cart" value="<? echo $item[$i]['id']; ?>">Купить</button>
                                 </div>
                             </div>

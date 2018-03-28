@@ -227,6 +227,7 @@ small {
 /*личный кабинет*/
 .lk_form {
     margin: 0 auto;
+    line-height: 1.35em;
 }
 
 #lk_info, .text-center {
@@ -322,6 +323,10 @@ small {
 
 .center_flex {
     justify-content: center;
+}
+
+.align_center_flex {
+    align-self: center;
 }
 
 .direction_col {

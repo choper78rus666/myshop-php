@@ -10,6 +10,15 @@ class CartModel {
         $this->db = new DB();
     }
     
+    function clearCart($interval){
+        $params = [
+            'time' => (time() - $interval*60)
+        ];
+        
+        $sql = "DELETE FROM cart_item WHERE id_cart = (SELECT id_cart FROM cart WHERE UNIX_TIMESTAMP(last_time) < :time LIMIT 1);";
+        $this->db->addSQL($params, $sql);
+    }
+    
     function getCartId(){
         $params = [
             'session_id' => session_id(),
@@ -94,10 +103,10 @@ class CartModel {
     function getCartAllItems(){
         $params = [
             'session_id' => session_id(),
-            'login' => empty($_SESSION['login']) ? '': $_SESSION['login']
+            'login' => empty($_SESSION['login']) ? : $_SESSION['login']
         ];
         
-        $sql = "SELECT catalog.id id, catalog.image image, catalog.title title, cart_item.count count, catalog.price*cart_item.count price FROM cart_item, cart, catalog WHERE (cart.session_id=:session_id OR cart.login=:login) AND cart.id_cart = cart_item.id_cart AND catalog.id = cart_item.item_id;";
+        $sql = "SELECT catalog.id id, catalog.image image, catalog.title title, cart_item.count count, catalog.price*cart_item.count price , cart.last_time last_time FROM cart_item, cart, catalog WHERE (cart.session_id=:session_id OR cart.login=:login) AND cart.id_cart = cart_item.id_cart AND catalog.id = cart_item.item_id;";
         $resault = $this->db->getSQL($params, $sql, true);
         return isset($resault) ? $resault: 0;
     }
@@ -105,7 +114,7 @@ class CartModel {
     function deleteItem($id){
         $params = [
             'session_id' => session_id(),
-            'login' => empty($_SESSION['login']) ? '': $_SESSION['login'],
+            'login' => empty($_SESSION['login']) ? : $_SESSION['login'],
             'item_id' => $id
         ];
         

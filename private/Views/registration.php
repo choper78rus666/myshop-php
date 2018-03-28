@@ -2,42 +2,34 @@
     <div class="row_container">
         <div class="flex1">
             <div class="content">
-                <form id ="reg_form" method="post">
+                <form id="reg_form" method="post">
                     <fieldset>
                         <legend>Регистрация пользователя</legend>
-                        <table class="lk_form">
-                            <tr>
-                                <td>
-                                    <label for="login">Login</label>
-                                </td>
-                                <td>
-                                    <input id="login" type="text" required>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label for="pass">Password</label>
-                                </td>
-                                <td>
-                                    <input id="pass" type="password" required>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label for="email">Email</label>
-                                </td>
-                                <td>
-                                    <input id="email" type="email" placeholder="name@mail.ru" required>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="center" colspan="2">
+                        <div class="lk_form center">
+                            <div class="row_container">
+                                <div class="flex1">
+                                    <div class="direction_col">
+                                        <label for="login">Login</label>
+                                        <label for="pass">Password</label>
+                                        <label for="email">Email</label>
+                                    </div>
+                                </div>
+                                <div class="flex1">
+                                    <div class="direction_col">
+                                        <input id="login" type="text" required>
+                                        <input id="pass" type="password" required>
+                                        <input id="email" type="email" placeholder="name@mail.ru" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row_container center_flex">
+                                <div align="center">
                                     <div id="response">Введите данные для регистрации</div>
-                                <br>
+                                    <br>
                                     <input form="reg_form" type="submit" value="Отправить">
-                                </td>
-                            </tr>
-                        </table>
+                                </div>
+                            </div>
+                        </div>
                     </fieldset>
                 </form>
             </div>

@@ -17,6 +17,7 @@ class CartController {
     
     function indexAction(){
         session_start();
+        $this->cart->clearCart(5);
         $title = 'Корзина';
         $view_filename = 'cart.php';
         GenerateResponse::generateResponse($view_filename, [
@@ -36,8 +37,11 @@ class CartController {
         }
     }
     
+    // Возвращает количество товаров в корзине у пользователя
     function getAllItemAction(){
         session_start();
+        //Очищает корзину, если время хранения больше передаваемых параметров в мин.
+        $this->cart->clearCart(5);
         echo $this->cart->getCartCountAllItem();
     }
     

@@ -32,7 +32,7 @@
                                 <div class="flex1 text-center">
                                     <p><strong><? echo $item_cart[$i]['price']; ?> руб.</strong></p>
                                 </div>
-                                <div class="flex1">  
+                                <div class="flex1 align_center_flex">  
                                     <a href="<? echo '/cart/delete/'.$item_cart[$i]['id']; ?>">Удалить</a>
                                 </div>
                             </div>
