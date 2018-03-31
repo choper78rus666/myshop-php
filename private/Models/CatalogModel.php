@@ -13,7 +13,12 @@ class CatalogModel {
     }
     
     function getItem($index = NULL){
-        $sql = "SELECT * FROM catalog" . (isset($index) ? " WHERE id = ?" : ";");
+        $sql = "SELECT catalog.*, cart_item.count cart_count FROM catalog LEFT JOIN cart_item ON catalog.id = cart_item.item_id " . (isset($index) ? " WHERE id = ?" : "ORDER BY catalog.id;");
+        return $this->db->getSQL($index, $sql);
+    }
+    
+    function getReserved($id){
+        $sql = "SELECT catalog.count-cart_item.count all_count FROM catalog, cart_item WHERE catalog.id = :id;";
         return $this->db->getSQL($index, $sql);
     }
     

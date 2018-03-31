@@ -13,7 +13,11 @@
                         <blockquote>
                             <?php echo $item['about'] ?>
                         </blockquote>
-                        <button id="add_cart" value="<? echo $item['id']; ?>">Купить</button>
+                        <? if($item['count']-$item['cart_count'] > 0): ?>
+                            <div id="<? echo $item['id']; ?>" class="add_cart"><button value="<? echo $item['id']; ?>">В корзину</button></div> 
+                        <? else: ?>
+                            <div class="text-center"><strong>Нет в наличии</strong></div>
+                        <? endif; ?>
                         <br>
                     </div>
                 </div>

@@ -28,7 +28,11 @@
                                     <img src="<? echo $item[$i]['image']; ?>" height="70px" alt="нет изображения">
                                 </a>
                                 <p><strong><? echo $item[$i]['price']; ?> руб.</strong></p>
-                                <button id="add_cart" value="<? echo $item[$i]['id']; ?>">В корзину</button>
+                                <? if($item[$i]['count']-$item[$i]['cart_count'] > 0): ?>
+                                <div id="<? echo $item[$i]['id']; ?>" class="add_cart"><button value="<? echo $item[$i]['id']; ?>">В корзину</button></div> 
+                                <? else: ?>
+                                <div class="text-center"><strong>Нет в наличии</strong></div>
+                                <? endif; ?>
                             </div>
                             <? endfor; ?>
                         </div>
@@ -43,7 +47,11 @@
                                     <img src="<? echo $item[$i]['image']; ?>" height="70px" alt="нет изображения">
                                 </a>
                                 <p><strong><? echo $item[$i]['price']; ?> руб.</strong></p>
-                                <button id="add_cart" value="<? echo $item[$i]['id']; ?>">В корзину</button>
+                                <? if($item[$i]['count']-$item[$i]['cart_count'] > 0): ?>
+                                <div id="<? echo $item[$i]['id']; ?>" class="add_cart"><button value="<? echo $item[$i]['id']; ?>">В корзину</button></div> 
+                                <? else: ?>
+                                <div class="text-center"><strong>Нет в наличии</strong></div>
+                                <? endif; ?>
                             </div>
                             <? endfor; ?>
                         </div>

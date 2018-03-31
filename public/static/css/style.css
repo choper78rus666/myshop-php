@@ -210,7 +210,7 @@ small {
     margin: 0 auto;
 }
 
-.item input, #buy, #add_cart {
+.item input, #buy, .add_cart>button {
     display: block;
     margin: 0 auto;
     width:100px;
@@ -219,7 +219,7 @@ small {
     border: solid 2px grey;
 }
 
-.item input:hover, #buy:hover, #add_cart:hover {
+.item input:hover, #buy:hover, .add_cart:hover>button {
     color:black;
     cursor: pointer;
 }
