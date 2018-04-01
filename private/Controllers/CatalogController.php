@@ -33,7 +33,7 @@ class CatalogController {
             $view_filename = 'items.php';
             GenerateResponse::generateResponse($view_filename, [
                 'title' => $title,
-                'item' => $this->item->getItem([$index])
+                'item' => $this->item->getItem(1, 1, [$index])
             ]);
         }
     }
@@ -48,7 +48,7 @@ class CatalogController {
             $view_filename = 'admin_account.php';
             GenerateResponse::generateResponse($view_filename, [
                 'title' => $title,
-                'item' => $index > 0 ? $this->item->getItem([$index]): ['id' => 0],
+                'item' => $index > 0 ? $this->item->getItem(1, 1, [$index]): ['id' => 0],
                 'content' => 'item_edit.php'
             ]);
         } echo 0;
@@ -83,13 +83,16 @@ class CatalogController {
         $this->account->isAdmin();
         // Открывает каталог для редактирования
         if (empty($get)) {
+            $post = $_POST;
+            $list = isset($post['list']) ? $post['list'] > 1 ? $post['list']:1 : 1;
             // получаем массив с show по id из GET запроса
             $index = (int)$get;
             $title = 'Редактирование каталога';
             $view_filename = 'admin_account.php';
             GenerateResponse::generateResponse($view_filename, [
                 'title' => $title,
-                'item' => $this->item->getItem(),
+                'item' => $this->item->getItem($list, 6),
+                'list' => $list,
                 'content' => 'items_edit.php'
             ]);
         }

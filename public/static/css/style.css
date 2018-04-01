@@ -169,6 +169,11 @@ small {
     text-align: center;
 }
 
+.listing {
+    display: flex;
+    justify-content: center;
+}
+
 /*каталог*/
 .catalog {
     font-size: 10pt;

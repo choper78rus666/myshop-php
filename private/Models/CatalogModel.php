@@ -12,8 +12,9 @@ class CatalogModel {
         $this->db = new DB();
     }
     
-    function getItem($index = NULL){
-        $sql = "SELECT catalog.*, cart_item.count cart_count FROM catalog LEFT JOIN cart_item ON catalog.id = cart_item.item_id " . (isset($index) ? " WHERE id = ?" : "ORDER BY catalog.id;");
+    function getItem($list=1, $col=4, $index = NULL){
+        $list = $list*$col-$col;
+        $sql = "SELECT catalog.*, cart_item.count cart_count FROM catalog LEFT JOIN cart_item ON catalog.id = cart_item.item_id " . (isset($index) ? " WHERE id = ?" : "ORDER BY catalog.id LIMIT $list, $col;");
         return $this->db->getSQL($index, $sql);
     }
     

@@ -53,8 +53,16 @@
                                 <div class="text-center"><strong>Нет в наличии</strong></div>
                                 <? endif; ?>
                             </div>
-                            <? endfor; ?>
+                            <? endfor;?>
                         </div>
                     </div>
+                </div>
+                <br>
+                <div class="listing">
+                        <form action="/" method="POST">
+                            <button type="submit" name="list" value="<? echo $list-1;?>">◄</button>
+                               <strong><? echo $list;?></strong>
+                            <button type="submit" name="list" value="<? echo $list+1;?>">►</button>
+                        </form>
                 </div>
             </div>

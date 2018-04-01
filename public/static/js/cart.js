@@ -25,8 +25,7 @@ jQuery(document).ready(function(){
                     if(response > 0){
                         document.getElementById('cart').innerHTML = response;
                     } else {
-                        document.getElementById('cart').innerHTML = response*-1;
-                        //jQuery(button).hide();
+                        document.getElementById('cart').innerHTML = -response;
                         jQuery('div#'+id_item).removeClass("add_cart");
                         jQuery('div#'+id_item).html('<div class="text-center"><strong>Нет в наличии</strong></div>');
                     }
