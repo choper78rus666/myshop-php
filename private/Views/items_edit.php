@@ -34,14 +34,8 @@
                             </tr>
                             <? endfor; ?>
                         </table>
-                        <br><br>
-                        <div class="listing">
-                        <form action="/catalog/edit" method="POST">
-                            <button type="submit" name="list" value="<? echo $list-1;?>">◄</button>
-                               <strong><? echo $list;?></strong>
-                            <button type="submit" name="list" value="<? echo $list+1;?>">►</button>
-                        </form>
-                        </div>
+                        <br>
+                        
                         <div style="float: right">
                             <a href="/catalog/item_edit/0">Добавить</a>
                         </div>
@@ -51,5 +45,12 @@
             </div>
 
         </div>
+    </div>
+    <div class="listing">
+        <form action="/catalog/edit" method="POST">
+            <button type="submit" name="list" value="<? echo $list-1;?>">◄</button>
+               <strong><? echo $list;?></strong>
+            <button type="submit" name="list" value="<? echo $list*10 < $item[0]['maxcount'] ? $list+1 : $list;?>">►</button>
+        </form>
     </div>
 </div>

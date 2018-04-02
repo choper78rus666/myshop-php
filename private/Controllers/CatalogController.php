@@ -16,11 +16,14 @@ class CatalogController {
     }
     
     function indexAction() {
+        $post = $_POST;
+        $list = isset($post['list']) ? $post['list'] > 1 ? $post['list']:1 : 1;
         $title = 'Каталог';
         $view_filename = 'catalog.php';
         GenerateResponse::generateResponse($view_filename, [
             'title' => $title,
-            'item' => $this->item->getItem()
+            'item' => $this->item->getItem($list, 10),
+            'list' => $list,
         ]);
     }
     
@@ -91,7 +94,7 @@ class CatalogController {
             $view_filename = 'admin_account.php';
             GenerateResponse::generateResponse($view_filename, [
                 'title' => $title,
-                'item' => $this->item->getItem($list, 6),
+                'item' => $this->item->getItem($list, 10),
                 'list' => $list,
                 'content' => 'items_edit.php'
             ]);

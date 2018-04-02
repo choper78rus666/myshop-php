@@ -34,7 +34,7 @@ class CartController {
             $id_item = $post['id_item'];
             
             $cart = $this->cart->addCartItem($id_item);
-            $data = $this->item->getItem([$id_item]);
+            $data = $this->item->getItem(1,1, [$id_item]);
             echo $data['count'] - $data['cart_count'] > 0 ? $cart : -$cart;
         }
     }

@@ -23,6 +23,9 @@
                                         <option <? echo $item['category'] !== 'other' ?:'selected'; ?> value="other">Разное</option>
                                         <option <? echo $item['category'] !== 'PC' ?:'selected'; ?> value="PC">Компьютеры</option>
                                         <option <? echo $item['category'] !== 'Appliances' ?:'selected'; ?> value="Appliances">Бытовая техника</option>
+                                        <option <? echo $item['category'] !== 'Woods' ?:'selected'; ?> value="Woods">Мебель</option>
+                                        <option <? echo $item['category'] !== 'Auto' ?:'selected'; ?> value="Auto">Автозапчасти</option>
+                                        <option <? echo $item['category'] !== 'Sport' ?:'selected'; ?> value="Sport">Спорттовары</option>
                                     </select>
                                 </td>
                             </tr>

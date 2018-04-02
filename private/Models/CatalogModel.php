@@ -12,9 +12,10 @@ class CatalogModel {
         $this->db = new DB();
     }
     
-    function getItem($list=1, $col=4, $index = NULL){
+    function getItem($list=1, $col=4, $index = NULL, $category= NULL){
         $list = $list*$col-$col;
-        $sql = "SELECT catalog.*, cart_item.count cart_count FROM catalog LEFT JOIN cart_item ON catalog.id = cart_item.item_id " . (isset($index) ? " WHERE id = ?" : "ORDER BY catalog.id LIMIT $list, $col;");
+        $category = isset($category) ? "WHERE catalog.category = '".$category."'" :'';
+        $sql = "SELECT (SELECT COUNT(*) FROM catalog $category) maxcount,catalog.*, cart_item.count cart_count FROM catalog LEFT JOIN cart_item ON catalog.id = cart_item.item_id" . (isset($index) ? " WHERE id = ?" : " $category ORDER BY catalog.id LIMIT $list, $col;");
         return $this->db->getSQL($index, $sql);
     }
     

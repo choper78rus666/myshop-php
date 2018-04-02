@@ -408,12 +408,20 @@ small {
     margin-top: 0; 
 }
 
-.flex_content_navi ul {
-    color: gray;
+.flex_content_navi li button {
+    background: none;
+    border: none;
+    text-align: left;
+    color: darkslategray;
+    opacity: 0.8;
+    font-size: 1em;
+    cursor: pointer;
 }
 
-.flex_content_navi li a {
-    text-align: left;
+.flex_content_navi li button:hover{
+    
+    color: black;
+    outline: none;
 }
 
 .sizer_item {

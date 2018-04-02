@@ -5,14 +5,16 @@
                     <div class="flex1 sizer_item left_nav">
                         <div class="flex_content_navi">
                             <h4>Разделы каталога</h4>
+                            <form action="/" method="post">
                             <ul type="square">
-                                <li><a href="">Бытовая техника</a></li>
-                                <li><a href="">Аудио Видео</a></li>
-                                <li><a href="">Автозапчасти</a></li>
-                                <li><a href="">Мебель</a></li>
-                                <li><a href="">Сантехника</a></li>
-                                <li><a href="">Спорт Туризм</a></li>
+                                <li><button name="action" value="Appliances">Бытовая техника</button></li>
+                                <li><button name="action" value="other">Аудио Видео</button></li>
+                                <li><button name="action" value="PC">Компьютеры</button></li>
+                                <li><button name="action" value="Woods">Мебель</button></li>
+                                <li><button name="action" value="Auto">Автозапчасти</button></li>
+                                <li><button name="action" value="Sport">Спорттовары</button></li>
                             </ul>
+                            </form>
                         </div>
                     </div>
                 <!-- Товары -->
@@ -62,7 +64,8 @@
                         <form action="/" method="POST">
                             <button type="submit" name="list" value="<? echo $list-1;?>">◄</button>
                                <strong><? echo $list;?></strong>
-                            <button type="submit" name="list" value="<? echo $list+1;?>">►</button>
+                            <button type="submit" name="list" value="<? echo $list*4 < $item[0]['maxcount'] ? $list+1 : $list;?>">►</button>
+                            <input type="hidden" name="action" value="<? echo $category; ?>">
                         </form>
                 </div>
             </div>
